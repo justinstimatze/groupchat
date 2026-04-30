@@ -15,8 +15,8 @@ jobs:
         with:
           python-version: "3.11"
       - run: uv pip install ruff
-      - run: uv run --no-project ruff check .
-      - run: uv run --no-project ruff format --check .
+      - run: uv run --no-project ruff check . meme
+      - run: uv run --no-project ruff format --check . meme
 
   test:
     runs-on: ubuntu-latest

@@ -160,6 +160,12 @@ pip install mcp  # or: uv pip install mcp
 
 The system requires `chafa` (`apt install chafa` / `brew install chafa`) and an Anthropic API key is needed only for `meme --add`. The MCP server has no other dependencies beyond `mcp>=1.26.0`.
 
+For development, install the pre-commit hook so `ruff check`, `ruff format --check`, and the test suite run before every commit (matches CI exactly):
+
+```bash
+pip install pre-commit && pre-commit install
+```
+
 To run the benchmark:
 
 ```bash

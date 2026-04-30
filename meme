@@ -20,17 +20,17 @@ meme --uninstall               — remove MCP server registration + remove guida
 Renders via chafa directly to /dev/tty — invisible to Claude's context.
 DB: memes.json in the same directory as this script.
 """
-import datetime
-import shutil
-import sys
-import os
+
+import difflib
 import json
+import os
+import random
 import re
+import shutil
+import subprocess
+import sys
 import urllib.parse
 import urllib.request
-import subprocess
-import difflib
-import random
 from pathlib import Path
 
 DB = Path(__file__).parent / "memes.json"
@@ -39,9 +39,11 @@ CHAFA = "chafa"
 GIF_CACHE = Path.home() / ".cache" / "groupchat" / "memes"
 MEME_OUTPUT = os.environ.get("MEME_OUTPUT", "chafa").lower()
 
+
 def load_db():
     with open(DB) as f:
         return json.load(f)
+
 
 def save_db(memes):
     tmp = DB.with_suffix(".tmp")
@@ -49,10 +51,12 @@ def save_db(memes):
         json.dump(memes, f, indent=2)
     tmp.rename(DB)
 
+
 def resolve_img_url(m):
     """Return the pinned img_url for a meme. All corpus memes must have img_url set.
     The tenor field is a search hint for finding the right URL via --preview-all."""
     return m.get("img_url") or None
+
 
 def _chafa_cmd(cols, rows=20):
     cmd = [CHAFA, "--animate", "off", f"--size={cols}x{rows}"]
@@ -77,8 +81,7 @@ _TRUSTED_GIF_HOSTS = (
 def _cached_gif(name, gif_url):
     parsed = urllib.parse.urlparse(gif_url)
     trusted = parsed.scheme == "https" and any(
-        parsed.netloc == h.lstrip(".") or parsed.netloc.endswith(h)
-        for h in _TRUSTED_GIF_HOSTS
+        parsed.netloc == h.lstrip(".") or parsed.netloc.endswith(h) for h in _TRUSTED_GIF_HOSTS
     )
     if not trusted:
         raise ValueError(f"Refusing to fetch GIF from untrusted host: {parsed.netloc}")
@@ -121,14 +124,16 @@ def render(gif_url, name, test=False):
             cols = 80
         rows = max(10, os.get_terminal_size().lines // 3) if sys.stdout.isatty() else 20
         out.write(b"\n")
-        result = subprocess.run([*_chafa_cmd(cols, rows), path],
-                                stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+        result = subprocess.run(
+            [*_chafa_cmd(cols, rows), path], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL
+        )
         out.write(result.stdout)
         out.write(b"\n")
         out.flush()
     finally:
         if close_out:
             out.close()
+
 
 def find_meme(memes, name):
     """Find meme by name — exact first, then fuzzy."""
@@ -144,6 +149,7 @@ def find_meme(memes, name):
                 return m
     return None
 
+
 def cmd_list(memes):
     print("\nAvailable memes:\n")
     for m in sorted(memes, key=lambda x: x["name"]):
@@ -156,6 +162,7 @@ def cmd_list(memes):
         flag_str = f"  [{', '.join(flags)}]" if flags else ""
         print(f"  {m['name']:<30} {m['deploy_when'][:60]}{flag_str}")
     print()
+
 
 def cmd_drop(memes, name, test=False):
     m = find_meme(memes, name)
@@ -172,6 +179,7 @@ def cmd_drop(memes, name, test=False):
         sys.exit(1)
     render(url, m["name"], test=test)
 
+
 def cmd_random(memes, test=False):
     m = random.choice(memes)
     print(f"[meme] dropping: {m['name']}", file=sys.stderr)
@@ -180,6 +188,7 @@ def cmd_random(memes, test=False):
         print(f"[meme] could not fetch '{m['name']}' from Tenor", file=sys.stderr)
         return
     render(url, m["name"], test=test)
+
 
 def cmd_preview(memes, name):
     """Download GIF and open in system viewer."""
@@ -198,6 +207,7 @@ def cmd_preview(memes, name):
         sys.exit(1)
     print(f"[meme] {m['name']} — {url}")
     subprocess.run(["xdg-open", path])
+
 
 def cmd_preview_all(memes):
     """Preview every meme in sequence; optionally pin a direct URL."""
@@ -223,11 +233,12 @@ def cmd_preview_all(memes):
             cached = GIF_CACHE / f"{m['name']}.gif"
             cached.unlink(missing_ok=True)
             save_db(memes)
-            print(f"  pinned.")
+            print("  pinned.")
         elif val == "c" and m.get("img_url"):
             del m["img_url"]
             save_db(memes)
-            print(f"  pin cleared.")
+            print("  pin cleared.")
+
 
 def cmd_crop(memes, name, geometry, cols=80, rows=20):
     """Crop a source frame in frames/ and re-bake its braille. geometry: WxH+X+Y"""
@@ -236,8 +247,14 @@ def cmd_crop(memes, name, geometry, cols=80, rows=20):
         print(f"[meme] '{name}' not found", file=sys.stderr)
         sys.exit(1)
     src_exts = (".gif", ".jpg", ".jpeg", ".png")
-    src = next((FRAMES_DIR / f"{m['name']}{ext}" for ext in src_exts
-                if (FRAMES_DIR / f"{m['name']}{ext}").exists()), None)
+    src = next(
+        (
+            FRAMES_DIR / f"{m['name']}{ext}"
+            for ext in src_exts
+            if (FRAMES_DIR / f"{m['name']}{ext}").exists()
+        ),
+        None,
+    )
     if not src:
         print(f"[meme] no source frame for '{name}' in frames/", file=sys.stderr)
         sys.exit(1)
@@ -251,8 +268,17 @@ def cmd_crop(memes, name, geometry, cols=80, rows=20):
     # Re-bake braille from new source
     out = FRAMES_DIR / f"{m['name']}.braille"
     result = subprocess.run(
-        [CHAFA, "--animate", "off", "--symbols", "braille", "--colors", "none",
-         f"--size={cols}x{rows}", str(src)],
+        [
+            CHAFA,
+            "--animate",
+            "off",
+            "--symbols",
+            "braille",
+            "--colors",
+            "none",
+            f"--size={cols}x{rows}",
+            str(src),
+        ],
         capture_output=True,
     )
     if result.returncode != 0:
@@ -260,21 +286,22 @@ def cmd_crop(memes, name, geometry, cols=80, rows=20):
         sys.exit(1)
     out.write_text(result.stdout.decode("utf-8", errors="replace"))
     lines = out.read_text().rstrip("\n").split("\n")
-    print(f"[meme] cropped+baked {m['name']}: {lines[0][:20]}... ({len(lines)} rows × {max(len(l) for l in lines if l)} cols)")
+    print(
+        f"[meme] cropped+baked {m['name']}: {lines[0][:20]}... ({len(lines)} rows × {max(len(line) for line in lines if line)} cols)"
+    )
     subprocess.run(["xdg-open", str(src)], capture_output=True)
 
 
 def cmd_preview_braille(memes, name=None):
     """Preview baked braille files inline in the terminal."""
-    targets = [m for m in sorted(memes, key=lambda x: x["name"])
-               if not name or m["name"] == name]
+    targets = [m for m in sorted(memes, key=lambda x: x["name"]) if not name or m["name"] == name]
     if not targets:
         print(f"[meme] '{name}' not found", file=sys.stderr)
         sys.exit(1)
     with open("/dev/tty", "w") as tty_w, open("/dev/tty", "r") as tty_r:
         for i, m in enumerate(targets, 1):
             braille = FRAMES_DIR / f"{m['name']}.braille"
-            tty_w.write(f"\n{'─'*60}\n[{i}/{len(targets)}] {m['name']}\n{'─'*60}\n")
+            tty_w.write(f"\n{'─' * 60}\n[{i}/{len(targets)}] {m['name']}\n{'─' * 60}\n")
             tty_w.write(braille.read_text() if braille.exists() else "  (no braille)\n")
             alt = m.get("alt_text", "")
             if alt:
@@ -293,8 +320,14 @@ def cmd_preview_local(memes):
     total = len(memes)
     src_exts = (".gif", ".jpg", ".jpeg", ".png")
     for i, m in enumerate(sorted(memes, key=lambda x: x["name"]), 1):
-        src = next((FRAMES_DIR / f"{m['name']}{ext}" for ext in src_exts
-                    if (FRAMES_DIR / f"{m['name']}{ext}").exists()), None)
+        src = next(
+            (
+                FRAMES_DIR / f"{m['name']}{ext}"
+                for ext in src_exts
+                if (FRAMES_DIR / f"{m['name']}{ext}").exists()
+            ),
+            None,
+        )
         pinned = "pinned" if m.get("img_url") else "search"
         print(f"\n[{i}/{total}] {m['name']}  ({pinned})")
         if src:
@@ -352,12 +385,12 @@ Return ONLY valid JSON with these fields:
     msg = client.messages.create(
         model="claude-haiku-4-5-20251001",
         max_tokens=800,
-        messages=[{"role": "user", "content": prompt}]
+        messages=[{"role": "user", "content": prompt}],
     )
     if not msg.content or not hasattr(msg.content[0], "text"):
         return None
     text = msg.content[0].text.strip()
-    m = re.search(r'\{.*\}', text, re.DOTALL)
+    m = re.search(r"\{.*\}", text, re.DOTALL)
     if m:
         try:
             return json.loads(m.group())
@@ -379,8 +412,8 @@ def cmd_add(memes, url):
             with urllib.request.urlopen(req, timeout=8) as r:
                 html = r.read().decode("utf-8", errors="ignore")
             # strip tags for LLM
-            page_text = re.sub(r'<[^>]+>', ' ', html)
-            page_text = re.sub(r'\s+', ' ', page_text).strip()
+            page_text = re.sub(r"<[^>]+>", " ", html)
+            page_text = re.sub(r"\s+", " ", page_text).strip()
             print("[meme] drafting metadata via LLM...", file=sys.stderr)
             draft = _llm_draft_metadata(url, page_text)
             if draft:
@@ -405,7 +438,10 @@ def cmd_add(memes, url):
         print(f"[meme] '{name}' already exists", file=sys.stderr)
         return
 
-    tenor = prompt_field("Tenor search query (hint for --preview-all; not used for live fetching)", draft.get("tenor", "") if draft else "")
+    tenor = prompt_field(
+        "Tenor search query (hint for --preview-all; not used for live fetching)",
+        draft.get("tenor", "") if draft else "",
+    )
     deploy_when = prompt_field("deploy_when", draft.get("deploy_when", "") if draft else "")
     too_much_if = prompt_field("too_much_if", draft.get("too_much_if", "") if draft else "")
     key = prompt_field("key (2-5 word fingerprint)", draft.get("key", "") if draft else "")
@@ -415,10 +451,19 @@ def cmd_add(memes, url):
     sit_raw = prompt_field("situations (comma-separated)", sit_default)
     situations = [s.strip() for s in sit_raw.split(",") if s.strip()]
 
-    img_url = prompt_field("img_url (direct GIF URL — required; use meme --preview-all to find and pin)", draft.get("img_url", "") if draft else "")
-    alt_text = prompt_field("alt_text (visual description for screen readers)", draft.get("alt_text", "") if draft else "")
+    img_url = prompt_field(
+        "img_url (direct GIF URL — required; use meme --preview-all to find and pin)",
+        draft.get("img_url", "") if draft else "",
+    )
+    alt_text = prompt_field(
+        "alt_text (visual description for screen readers)",
+        draft.get("alt_text", "") if draft else "",
+    )
     if not img_url:
-        print("[meme] img_url is required — add the meme, then run: meme --preview-all  to find and pin the URL", file=sys.stderr)
+        print(
+            "[meme] img_url is required — add the meme, then run: meme --preview-all  to find and pin the URL",
+            file=sys.stderr,
+        )
     entry = {
         "name": name,
         "tenor": tenor,
@@ -444,6 +489,7 @@ def cmd_add(memes, url):
     print("Test render? [Y/n]: ", end="", flush=True)
     if sys.stdin.readline().strip().lower() != "n":
         cmd_drop(memes, name)
+
 
 def cmd_harvest(memes, source="kym"):
     """Fetch trending memes from a source and present an interactive add/skip queue."""
@@ -532,11 +578,13 @@ def cmd_bake(memes, name, cols=80, rows=20, force=False, _from_bake_all=False):
         frame_png = GIF_CACHE / f"{m['name']}-frame{frame}.png"
         if not frame_png.exists():
             result = subprocess.run(
-                ["convert", f"{gif_path}[{frame}]", str(frame_png)],
-                capture_output=True
+                ["convert", f"{gif_path}[{frame}]", str(frame_png)], capture_output=True
             )
             if result.returncode != 0:
-                _bake_fail(f"[meme] ImageMagick frame extraction failed: {result.stderr.decode()}", _from_bake_all)
+                _bake_fail(
+                    f"[meme] ImageMagick frame extraction failed: {result.stderr.decode()}",
+                    _from_bake_all,
+                )
                 return
         render_src = str(frame_png)
     FRAMES_DIR.mkdir(exist_ok=True)
@@ -545,7 +593,7 @@ def cmd_bake(memes, name, cols=80, rows=20, force=False, _from_bake_all=False):
     if bake_args:
         processed = GIF_CACHE / f"{m['name']}-processed.png"
         result = subprocess.run(
-            ["convert", render_src] + bake_args + [str(processed)],
+            ["convert", render_src, *bake_args, str(processed)],
             capture_output=True,
         )
         if result.returncode != 0:
@@ -565,8 +613,17 @@ def cmd_bake(memes, name, cols=80, rows=20, force=False, _from_bake_all=False):
     if not frame_dest.exists() or force:
         shutil.copy2(render_src, frame_dest)
     result = subprocess.run(
-        [CHAFA, "--animate", "off", "--symbols", "braille", "--colors", "none",
-         f"--size={cols}x{rows}", render_src],
+        [
+            CHAFA,
+            "--animate",
+            "off",
+            "--symbols",
+            "braille",
+            "--colors",
+            "none",
+            f"--size={cols}x{rows}",
+            render_src,
+        ],
         capture_output=True,
     )
     if result.returncode != 0:
@@ -576,7 +633,9 @@ def cmd_bake(memes, name, cols=80, rows=20, force=False, _from_bake_all=False):
     tmp.write_text(result.stdout.decode("utf-8", errors="replace"))
     tmp.rename(out)
     lines = out.read_text().rstrip("\n").split("\n")
-    print(f"[meme] baked {m['name']}: {len(lines)} rows × {max(len(l) for l in lines if l)} cols → {out.name}")
+    print(
+        f"[meme] baked {m['name']}: {len(lines)} rows × {max(len(line) for line in lines if line)} cols → {out.name}"
+    )
 
 
 class _BakeError(Exception):
@@ -608,8 +667,14 @@ _INSTALL_MARKER_END = "<!-- END meme-server-guidance -->"
 def _build_roster_md(memes):
     """Generate the roster markdown block from memes.json (for meme --regen)."""
     mech_abbr = {"incongruity": "I", "benign_violation": "B", "superiority": "S", "relief": "R"}
-    plat_abbr = {"reddit": "rd", "twitter": "tw", "tiktok": "tt", "tumblr": "tm", "youtube": "yt", "discord": "dc"}
-    current_year = datetime.date.today().year
+    plat_abbr = {
+        "reddit": "rd",
+        "twitter": "tw",
+        "tiktok": "tt",
+        "tumblr": "tm",
+        "youtube": "yt",
+        "discord": "dc",
+    }
     lines = []
     for m in memes:
         td = "t" if m["text_dependent"] else "f"
@@ -646,11 +711,14 @@ def cmd_regen():
     memes = load_db()
     claude_md = Path(__file__).parent / "CLAUDE.md"
     if not claude_md.exists():
-        print(f"[meme] CLAUDE.md not found", file=sys.stderr)
+        print("[meme] CLAUDE.md not found", file=sys.stderr)
         sys.exit(1)
     existing = claude_md.read_text()
     if _ROSTER_MARKER_BEGIN not in existing:
-        print(f"[meme] roster markers not found in CLAUDE.md — add <!-- BEGIN meme-roster-generated --> markers", file=sys.stderr)
+        print(
+            "[meme] roster markers not found in CLAUDE.md — add <!-- BEGIN meme-roster-generated --> markers",
+            file=sys.stderr,
+        )
         sys.exit(1)
     new_block = f"{_ROSTER_MARKER_BEGIN}\n{_build_roster_md(memes)}\n{_ROSTER_MARKER_END}"
     start = existing.index(_ROSTER_MARKER_BEGIN)
@@ -674,7 +742,8 @@ def cmd_install():
     else:
         result = subprocess.run(
             ["claude", "mcp", "add", "meme", "-s", "user", "--", "python3", str(server_path)],
-            capture_output=True, text=True,
+            capture_output=True,
+            text=True,
         )
         if result.returncode == 0:
             print(f"✓ MCP server registered: python3 {server_path}")
@@ -682,7 +751,7 @@ def cmd_install():
             # "already exists" is not a real error
             msg = (result.stderr or result.stdout).strip()
             if "already" in msg.lower() or "exists" in msg.lower():
-                print(f"✓ MCP server already registered (skipped)")
+                print("✓ MCP server already registered (skipped)")
             else:
                 print(f"⚠️  MCP registration failed: {msg}", file=sys.stderr)
                 print(f"   Run manually: claude mcp add meme -s user -- python3 {server_path}")
@@ -721,7 +790,8 @@ def cmd_uninstall():
     if shutil.which("claude"):
         result = subprocess.run(
             ["claude", "mcp", "remove", "meme", "-s", "user"],
-            capture_output=True, text=True,
+            capture_output=True,
+            text=True,
         )
         msg = (result.stderr or result.stdout).strip()
         if result.returncode == 0:
@@ -818,6 +888,7 @@ def main():
     else:
         name = " ".join(args)
         cmd_drop(memes, name)
+
 
 if __name__ == "__main__":
     main()
