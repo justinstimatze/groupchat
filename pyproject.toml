@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "groupchat"
+version = "0.1.0"
+description = "Ambient meme drops for Claude Code"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "mypy",
+    "pre-commit",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = []
+artifacts = ["meme_server.py", "meme"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "F541", "I", "N", "UP", "B", "A", "SIM", "RUF", "S"]
+ignore = [
+    "S101",   # assert OK
+    "S603",   # subprocess OK
+    "S607",   # partial executable path OK
+    "S310",   # urllib URL audit — tenor.com scrape and GIF fetch; validated in code
+    "S311",   # random for non-crypto OK
+    "S110",   # try-except-pass: intentional best-effort render
+    "SIM105", # suppress too aggressive
+    "SIM108", # ternary too aggressive
+    "SIM115", # open() without context manager: intentional (tty spans try block)
+    "E501",   # line length handled by formatter
+    "UP015",  # unnecessary open mode
+    "RUF001", # ambiguous unicode: ❯ is intentional (mimics Claude Code prompt)
+    "RUF003", # ambiguous unicode in comment: intentional
+]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

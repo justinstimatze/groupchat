@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.swp
+Pasted image.png
+.env
+.defn/
+
+# Source images are copyright — only braille art ships in the repo.
+# Run `meme --bake-all` to regenerate from img_url.
+frames/*.jpg
+frames/*.jpeg
+frames/*.png
+frames/*.gif

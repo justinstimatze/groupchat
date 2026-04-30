@@ -1,0 +1,1864 @@
+[
+  {
+    "name": "this-is-fine",
+    "tenor": "this is fine dog fire",
+    "situations": [
+      "ignoring obvious problems",
+      "pretending chaos is normal",
+      "coping by denial",
+      "everything going wrong at once"
+    ],
+    "affect": "dissociation + dark humor",
+    "deploy_when": "speaker or subject is performing normalcy while things are clearly broken",
+    "irony_modes": [
+      "straight",
+      "self-aware"
+    ],
+    "too_much_if": "any generic bad situation \u2014 requires active denial, not just badness",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "person actively performing calm while disaster is visibly ongoing",
+    "native_platform": "twitter",
+    "vitality_date": 2016,
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/018/012/this_is_fine.jpeg",
+    "alt_text": "K.C. Green's webcomic dog sitting calmly at a table, drinking coffee, in a room that is entirely on fire. Caption: 'This is fine.'"
+  },
+  {
+    "name": "surprised-pikachu",
+    "tenor": "surprised pikachu",
+    "situations": [
+      "shocked by predictable outcome",
+      "caused a problem and surprised by it",
+      "reaping what was sown"
+    ],
+    "affect": "mock disbelief",
+    "deploy_when": "someone is surprised by a consequence they clearly caused or should have foreseen",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "any genuine surprise \u2014 requires the outcome to have been obviously telegraphed; avoid directing at the user for their own mistakes \u2014 the S register reads as condescending (\"you should have seen this coming\"); works best when the user is laughing at a third party or a system, not themselves",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "foreseen outcome; feigned shock [NOT: passive waiting]",
+    "native_platform": "reddit",
+    "vitality_date": 2018,
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/027/475/Screen_Shot_2018-10-25_at_11.02.15_AM.png",
+    "alt_text": "Pikachu from Pok\u00e9mon with an exaggeratedly wide-open mouth and shocked round eyes \u2014 the face of someone surprised by a completely foreseeable outcome."
+  },
+  {
+    "name": "grus-plan",
+    "tenor": "gru plan meme",
+    "situations": [
+      "plan that fails at the last step",
+      "own logic undermining you",
+      "step 3 is the same as step 1"
+    ],
+    "affect": "resigned self-awareness",
+    "deploy_when": "a plan's fatal flaw is that it requires the thing it was supposed to produce",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "any plan that failed \u2014 the specific shape is circular/self-defeating logic; also avoid with users unlikely to know the four-panel Gru template \u2014 without that schema the image is just a bald man gesturing",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "plan requires its own conclusion as a prerequisite (circular dependency)",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/025/648/template.jpg",
+    "alt_text": "Four-panel Gru's Plan from Despicable Me: Gru confidently points at steps 1, 2, and 3 of his plan, then stares in confusion at step 3 \u2014 which contradicts the goal."
+  },
+  {
+    "name": "panik-kalm-panik",
+    "tenor": "panik kalm panik meme",
+    "situations": [
+      "false relief followed by worse realization",
+      "problem seems solved then gets worse",
+      "brief calm between panics"
+    ],
+    "affect": "escalating dread",
+    "deploy_when": "a solution briefly appears then the real problem surfaces",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "just two states of panic without the false calm beat",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "problem \u2192 apparent fix \u2192 worse version of same problem (three-beat arc)",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/001/798/947/3ff.png",
+    "alt_text": "Three-panel meme showing a stick figure in escalating states: PANIK (arms up, frantic), KALM (relaxed, relieved), then PANIK again (bigger, more frantic than before).",
+    "bake_args": [
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "10,42%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "one-does-not-simply",
+    "tenor": "one does not simply walk into mordor",
+    "situations": [
+      "underestimating difficulty",
+      "naive plan for hard problem",
+      "this is not as easy as you think"
+    ],
+    "affect": "grave understatement",
+    "deploy_when": "someone proposes something as if it were easy that is notoriously hard",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "just any difficult thing \u2014 works best when there's a gap between perceived and actual difficulty",
+    "vitality": "somewhat dated",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "naive underestimate of hard thing",
+    "native_platform": "reddit",
+    "vitality_date": 2012,
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/000/143/493654d6ef.jpg",
+    "alt_text": "Boromir (Sean Bean) from The Lord of the Rings: The Fellowship of the Ring at the Council of Elrond, making a solemn open-handed gesture while delivering grave counsel."
+  },
+  {
+    "name": "distracted-boyfriend",
+    "tenor": "distracted boyfriend meme",
+    "situations": [
+      "tempted by shiny new thing while neglecting existing commitment",
+      "chasing trend vs doing the work",
+      "new technology vs old reliable"
+    ],
+    "affect": "rueful self-recognition",
+    "deploy_when": "someone or something is obviously attracted to a new thing while neglecting the thing they should be doing",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "any preference \u2014 requires an active betrayal of something that deserved attention",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "abandon A; chase shiny B",
+    "native_platform": "twitter",
+    "vitality_date": 2017,
+    "img_url": "https://i.kym-cdn.com/photos/images/newsfeed/001/287/555/106.jpg",
+    "alt_text": "A man walking with his girlfriend turns his head to stare at another woman. His girlfriend looks back at him in disbelief and betrayal."
+  },
+  {
+    "name": "expanding-brain",
+    "tenor": "expanding brain meme",
+    "situations": [
+      "escalating absurdity",
+      "galaxy-brained reasoning",
+      "increasingly unhinged logic that somehow makes sense"
+    ],
+    "affect": "mock enlightenment",
+    "deploy_when": "a chain of reasoning leads somewhere absurd but internally consistent",
+    "irony_modes": [
+      "ironic",
+      "meta-ironic"
+    ],
+    "too_much_if": "just listing things \u2014 requires escalating strangeness",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "ideas escalating from sensible to increasingly absurd",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/022/266/brain.png",
+    "alt_text": "Four-panel brain meme: small dim brain (obvious idea), medium brain (better idea), large illuminated brain (wild idea), exploding galaxy brain (absurd idea). Each panel shows a progressively larger and more radiant brain."
+  },
+  {
+    "name": "two-buttons",
+    "tenor": "two buttons sweating meme",
+    "situations": [
+      "impossible choice",
+      "both options are bad",
+      "paralysis between equally terrible options"
+    ],
+    "affect": "anxious paralysis",
+    "deploy_when": "forced to choose between two options that are both problematic",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "any decision \u2014 requires genuine tension between bad options",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "benign_violation"
+    ],
+    "key": "frozen between equal-bad choices; can't press either [NOT: verbal internal debate]",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/019/571/dailystruggg.jpg",
+    "alt_text": "A sweating man in a suit and tie frantically hovering his hand over two large identical red buttons, unable to commit to pressing either one."
+  },
+  {
+    "name": "woman-yelling-cat",
+    "tenor": "woman yelling at cat",
+    "situations": [
+      "overblown accusation vs calm confusion",
+      "disproportionate reaction",
+      "accusation that seems unhinged to the accused"
+    ],
+    "affect": "absurdist conflict",
+    "deploy_when": "one party is extremely upset and the other is baffled and unbothered",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "any disagreement \u2014 the asymmetry of reactions is the joke",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "emotional accusation vs composed dismissal",
+    "native_platform": "twitter",
+    "vitality_date": 2019,
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/030/157/womanyellingcat.jpg",
+    "alt_text": "Split image: left \u2014 Taylor Armstrong from The Real Housewives of Beverly Hills screaming and pointing in anger; right \u2014 Smudge the cat sitting at a dinner table looking calm, unbothered, and confused."
+  },
+  {
+    "name": "hide-the-pain-harold",
+    "tenor": "hide the pain harold",
+    "situations": [
+      "forced smile through suffering",
+      "pretending to be okay",
+      "performative contentment masking pain"
+    ],
+    "affect": "stoic suffering",
+    "deploy_when": "someone is visibly trying to seem fine about something that is clearly not fine",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "any minor inconvenience \u2014 requires visible effort to maintain the performance",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "polite smile through sustained pain",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg",
+    "alt_text": "Hungarian model Andr\u00e1s Arat\u00f3 (known as Harold) smiling warmly for stock photos while his eyes convey deep, visible, suppressed suffering."
+  },
+  {
+    "name": "always-has-been",
+    "tenor": "wait it's all always has been astronaut meme",
+    "situations": [
+      "revealing something was true all along",
+      "the thing you feared was already the case",
+      "no new information just confirmation of what you suspected"
+    ],
+    "affect": "dark revelation",
+    "deploy_when": "a supposedly new discovery turns out to be the longstanding reality",
+    "irony_modes": [
+      "straight",
+      "existential"
+    ],
+    "too_much_if": "trivial reveals \u2014 best for slightly ominous or fatalistic truths",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "was always true; just now noticed",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/newsfeed/002/557/076/134.jpeg",
+    "alt_text": "Two astronauts in space suits; one points a gun at the other after the second astronaut discovers Earth has 'always been' a certain way. The gunman says 'Always has been.'"
+  },
+  {
+    "name": "theyre-the-same-picture",
+    "tenor": "they're the same picture office",
+    "situations": [
+      "false distinction",
+      "two things presented as different that are the same",
+      "rebranding of identical things"
+    ],
+    "affect": "flat deadpan",
+    "deploy_when": "two supposedly different things are being treated as meaningfully distinct when they aren't",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "things that actually are different",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "presented as distinct; actually identical [NOT: mutual blame]",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/027/752/6lwrp2xhplg41.jpg",
+    "alt_text": "Pam Beesly (Jenna Fischer) from The Office holding up two identical-looking photos side-by-side and saying 'They're the same picture.'",
+    "bake_args": [
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "6,45%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "is-this-a-pigeon",
+    "tenor": "is this a butterfly meme",
+    "situations": [
+      "confidently misidentifying something",
+      "category error stated with full conviction",
+      "calling something what it clearly isn't"
+    ],
+    "affect": "blissful wrongness",
+    "deploy_when": "someone is labeling or treating something as something it obviously isn't",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "subtle misclassifications \u2014 works best when the gap is obvious",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "confident misidentification",
+    "native_platform": "tumblr",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/017/299/DmbzJspWwAEprcQ.jpg",
+    "alt_text": "A man from the 1990s anime The Brave Fighter of Sun Fighbird pointing confidently at a butterfly and asking 'Is this a pigeon?'"
+  },
+  {
+    "name": "roll-safe",
+    "tenor": "roll safe think about it meme",
+    "situations": [
+      "galaxy-brained workaround",
+      "technically-correct-but-wrong logic",
+      "solving a problem by redefining it away"
+    ],
+    "affect": "smug false insight",
+    "deploy_when": "someone produces reasoning that sounds clever but is actually just an evasion",
+    "irony_modes": [
+      "ironic"
+    ],
+    "too_much_if": "actual clever insight \u2014 it's specifically for bad-faith or circular logic that sounds smart",
+    "vitality": "somewhat dated",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "self-reassuring flawed logic",
+    "native_platform": "twitter",
+    "vitality_date": 2017,
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/022/138/highresrollsafe.jpg",
+    "alt_text": "Kayode Ewumi as Roll Safe from the BBC series Hood Documentary, pointing a finger to his temple with a self-satisfied smirk \u2014 the look of flawed but self-reassuring logic."
+  },
+  {
+    "name": "hackerman",
+    "tenor": "hackerman mr robot",
+    "situations": [
+      "feeling smug about a technical solution",
+      "elaborate solution to simple problem",
+      "using a powerful tool for a mundane task"
+    ],
+    "affect": "self-satisfied nerd energy",
+    "deploy_when": "a solution is technically impressive but hilariously over-engineered for the situation",
+    "irony_modes": [
+      "self-directed",
+      "ironic"
+    ],
+    "too_much_if": "actual impressive technical feats \u2014 it's specifically for when the solution is overkill",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "absurd over-engineering for trivial problem; performed with elite confidence",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/021/807/ig9OoyenpxqdCQyABmOQBZDI0duHk2QZZmWg2Hxd4ro.jpg",
+    "alt_text": "A person wearing sunglasses composited into a dramatic circuit-board graphic, presented as an elite hacker performing an absurdly simple action.",
+    "bake_args": [
+      "-gamma",
+      "1.5",
+      "-unsharp",
+      "0x1.5+1.8+0.02"
+    ]
+  },
+  {
+    "name": "success-kid",
+    "tenor": "success kid fist pump",
+    "situations": [
+      "small victory that feels huge",
+      "finally getting something to work",
+      "minor win after repeated failure"
+    ],
+    "affect": "triumphant relief",
+    "deploy_when": "something small finally succeeds after struggle \u2014 the scale of triumph exceeds the actual achievement",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "large genuine victories \u2014 it's for punching above weight class",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "disproportionate fist-pump for small victory \u2014 benign violation of scale, not relief",
+    "native_platform": "reddit",
+    "vitality_date": 2012,
+    "img_url": "https://i.kym-cdn.com/photos/images/original/000/185/885/SANDCASTLES.png",
+    "alt_text": "Young boy Sam Griner on a beach, pumping his fist with a triumphant, determined expression \u2014 the face of a small but hard-won victory.",
+    "bake_args": [
+      "-crop",
+      "380x420+50+0",
+      "+repage",
+      "-auto-gamma",
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "9,42%",
+      "-colorspace",
+      "sRGB",
+      "-unsharp",
+      "0x0.8+1.5+0.02"
+    ]
+  },
+  {
+    "name": "ight-imma-head-out",
+    "tenor": "spongebob ight imma head out",
+    "situations": [
+      "strategic exit",
+      "knowing when to leave",
+      "situation deteriorating past comfort level"
+    ],
+    "affect": "dignified departure",
+    "deploy_when": "the right move is clearly to disengage from something that's gone bad",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "casual goodbyes \u2014 best when there's a specific thing being escaped",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "quiet dignified exit from bad situation",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/030/967/spongebob.jpg",
+    "alt_text": "SpongeBob SquarePants sitting with a small overnight bag, quietly preparing to leave a situation."
+  },
+  {
+    "name": "its-free-real-estate",
+    "tenor": "it's free real estate tim and eric",
+    "situations": [
+      "exploiting an obvious gap no one else noticed",
+      "opportunity that should have been seized sooner",
+      "low-hanging fruit"
+    ],
+    "affect": "opportunistic glee",
+    "deploy_when": "an obvious opportunity or advantage is just sitting there unclaimed",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "any advantage \u2014 requires the ease and obviousness of the opportunity",
+    "vitality": "somewhat dated",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "exploiting unclaimed obvious gap",
+    "native_platform": "youtube",
+    "vitality_date": 2016,
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/021/311/free.jpg",
+    "alt_text": "Tim Robinson gesturing around an empty open area with a casual 'help yourself' expression, saying 'It's free real estate.'",
+    "bake_args": [
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "9,38%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "press-x-to-doubt",
+    "tenor": "press x to doubt la noire",
+    "situations": [
+      "skepticism about a claim",
+      "plausible-sounding thing that might be false",
+      "trust but verify situation"
+    ],
+    "affect": "measured skepticism",
+    "deploy_when": "a claim is being made that warrants visible but polite doubt",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "obvious lies \u2014 it's for the plausibly-but-probably-not zone",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "skepticism about implausible claim",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/023/021/e02e5ffb5f980cd8262cf7f0ae00a4a9_press-x-to-doubt-memes-memesuper-la-noire-doubt-meme_419-238.png",
+    "alt_text": "L.A. Noire video game UI: a detective's hand hovering over a controller button labeled 'X \u2014 Doubt' as a suspect gives a dubious statement."
+  },
+  {
+    "name": "anakin-padme",
+    "tenor": "anakin padme star wars meme",
+    "situations": [
+      "assumption that something bad won't happen",
+      "walking into obvious consequences",
+      "ominous reassurance"
+    ],
+    "affect": "dramatic irony",
+    "deploy_when": "someone is reassured by a condition that clearly won't hold",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "actual uncertainty \u2014 it's for when the bad outcome is obviously coming",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "naive follow-up; sinister implication ignored",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/002/081/388/497.jpg",
+    "alt_text": "Anakin Skywalker and Padm\u00e9 Amidala from Star Wars: Attack of the Clones. Padm\u00e9 hopefully asks a follow-up; Anakin stares ahead with a knowing, slightly sinister expression and does not reassure her."
+  },
+  {
+    "name": "leonardo-pointing",
+    "tenor": "leonardo dicaprio pointing once upon a time in hollywood",
+    "situations": [
+      "recognizing exactly the thing",
+      "that's precisely it",
+      "seeing yourself or something else perfectly described"
+    ],
+    "affect": "delighted recognition",
+    "deploy_when": "something is a perfect example of what's being discussed \u2014 an ideal specimen",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "loose resemblances \u2014 requires a tight fit",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "recognition: that exact thing spotted",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/033/487/rick.jpg",
+    "alt_text": "Leonardo DiCaprio as Rick Dalton in Once Upon a Time in Hollywood, pointing excitedly at a TV screen with a look of delighted recognition."
+  },
+  {
+    "name": "tuxedo-winnie-the-pooh",
+    "tenor": "tuxedo winnie the pooh meme",
+    "situations": [
+      "fancier name for the same thing",
+      "rebranding identical things",
+      "pretentious terminology for mundane concept"
+    ],
+    "affect": "gentle snobbery",
+    "deploy_when": "the same thing is being described in a more elevated register without substantive difference",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "things that are actually meaningfully different in the elevated form",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "same underlying thing; called something prestigious [NOT: self-built complexity]",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/001/474/943/b12.jpg",
+    "alt_text": "Two-panel Winnie the Pooh: left panel shows regular Pooh thinking something plainly; right panel shows Pooh in a tuxedo thinking the identical thing expressed with elaborate pretension."
+  },
+  {
+    "name": "blinking-white-guy",
+    "tenor": "blinking white guy drew scanlon",
+    "situations": [
+      "processing something bewildering",
+      "slow-dawning disbelief",
+      "absorbing shocking information"
+    ],
+    "affect": "stunned processing",
+    "deploy_when": "something has just been said or done that requires a moment to fully register",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "minor surprises \u2014 best for genuinely baffling statements",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "processing genuinely bewildering statement",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/022/255/Blinking_White_Guy_meme_banner.jpg",
+    "alt_text": "Drew Scanlon, a video game streamer, slowly blinking at the camera with a baffled, processing expression."
+  },
+  {
+    "name": "shut-up-and-take-my-money",
+    "tenor": "shut up and take my money futurama",
+    "situations": [
+      "immediately sold on something",
+      "something is exactly what you wanted",
+      "obvious product-market fit"
+    ],
+    "affect": "impulsive enthusiasm",
+    "deploy_when": "something is so obviously good that objections seem absurd",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "things that require convincing \u2014 immediate unconditional enthusiasm only; or when the Futurama/2011 nostalgia register would feel anachronistic rather than knowing",
+    "vitality": "retro",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "relief"
+    ],
+    "key": "immediate unconditional yes \u2014 hyperbolic enthusiasm that needs no persuasion",
+    "native_platform": "reddit",
+    "vitality_date": 2011,
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/005/574/takemymoney.jpg",
+    "alt_text": "Philip J. Fry from Futurama lunging forward urgently, holding out a wad of cash and shouting 'Shut up and take my money!'"
+  },
+  {
+    "name": "buff-doge-vs-cheems",
+    "tenor": "buff doge vs cheems meme",
+    "situations": [
+      "strong past vs weakened present",
+      "previous version was better",
+      "regression from former glory"
+    ],
+    "affect": "rueful decline",
+    "deploy_when": "comparing a robust earlier version or state to a diminished current one \u2014 the contrast shows decline",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "cases where the present is actually fine",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "strong/past/better version vs weak/present/worse version \u2014 degradation comparison [NOT: generic preference]",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/001/853/670/1de.jpg",
+    "alt_text": "Left panel: a buff, muscular Shiba Inu standing confidently with sunglasses. Right panel: Cheems, a soft small Shiba Inu saying 'bork' with an anxious expression.",
+    "bake_args": [
+      "-colorspace",
+      "Gray",
+      "-level",
+      "65%,100%",
+      "-colorspace",
+      "sRGB",
+      "-unsharp",
+      "0x1.5+2.0+0.02"
+    ]
+  },
+  {
+    "name": "waiting-skeleton",
+    "tenor": "still waiting skeleton meme",
+    "situations": [
+      "very long wait for something expected",
+      "indefinite delay",
+      "thing that was supposed to happen hasn't"
+    ],
+    "affect": "patient despair",
+    "deploy_when": "something is taking much longer than it should have",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "reasonable waits",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "waited so long bones appeared [NOT: foreseeable outcome]",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/000/159/325/1262055260350.jpg",
+    "alt_text": "A skeleton sitting patiently in a chair, having waited so long for something that it has fully decomposed."
+  },
+  {
+    "name": "lock-in-horse",
+    "tenor": "i just need to lock in horse",
+    "situations": [
+      "realizing you were wrong and committing to do better",
+      "self-deprecating acknowledgment",
+      "catching yourself and course-correcting"
+    ],
+    "affect": "determined self-deprecation",
+    "deploy_when": "someone (including the assistant) commits to intense focused mode \u2014 'I'm locking in, this is happening'",
+    "irony_modes": [
+      "self-directed"
+    ],
+    "too_much_if": "generic agreement without the self-deprecating energy \u2014 requires the 'I was wrong and I'm owning it' beat",
+    "vitality": "new",
+    "text_dependent": false,
+    "mechanism": [
+      "superiority",
+      "relief"
+    ],
+    "key": "focused intense mode engaged \u2014 decisive commitment to bearing down",
+    "native_platform": "twitter",
+    "vitality_date": 2024,
+    "alt_text": "A horse staring directly and intensely into the camera with a focused, locked-in expression of absolute determination.",
+    "bake_args": [
+      "-contrast-stretch",
+      "2%x2%",
+      "-unsharp",
+      "0x1+1.2+0.02"
+    ],
+    "img_url": "https://media1.tenor.com/m/cCLJ73UoLSIAAAAC/lock-in-just-lock-in.gif"
+  },
+  {
+    "name": "picard-facepalm",
+    "tenor": "picard facepalm star trek",
+    "situations": [
+      "obvious mistake was made",
+      "something should have been caught earlier",
+      "exasperation at preventable failure"
+    ],
+    "affect": "dignified exasperation",
+    "deploy_when": "a mistake is embarrassingly obvious in hindsight and deserves a visible facepalm",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "genuinely subtle bugs \u2014 it's for things that should have been caught",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "dignified resignation at stupidity",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/000/554/picard-facepalm.jpg",
+    "alt_text": "Captain Jean-Luc Picard from Star Trek: The Next Generation pressing his palm firmly to his forehead and closing his eyes in dignified exasperation.",
+    "bake_args": [
+      "-crop",
+      "770x480+0+0",
+      "+repage",
+      "-unsharp",
+      "0x3+3.5+0.02",
+      "-colorspace",
+      "Gray",
+      "-level",
+      "15%,85%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "evil-kermit",
+    "tenor": "evil kermit me to me meme",
+    "situations": [
+      "inner voice suggesting bad choices",
+      "temptation to take the lazy or wrong path",
+      "knowing you shouldn't but wanting to anyway"
+    ],
+    "affect": "guilty temptation",
+    "deploy_when": "one part of the brain is suggesting something inadvisable that another part wants to resist \u2014 internal conflict only",
+    "irony_modes": [
+      "self-directed",
+      "straight"
+    ],
+    "too_much_if": "external pressure \u2014 it must be an internal conflict with yourself",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "bad self's argument winning; you know you shouldn't but the excuse sounds good",
+    "native_platform": "twitter",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/021/668/kermit.jpg",
+    "alt_text": "Kermit the Frog sitting across a table from a dark hooded version of himself (Kermit in a black cloak), representing internal temptation or the shoulder devil.",
+    "bake_args": [
+      "-level",
+      "5%,95%",
+      "-unsharp",
+      "0x1.5+2.0+0.01"
+    ]
+  },
+  {
+    "name": "spiderman-pointing",
+    "tenor": "spiderman pointing at each other meme",
+    "situations": [
+      "two things are indistinguishable",
+      "mutual accusation where both are equally guilty",
+      "calling out the same pattern in two places"
+    ],
+    "affect": "deadpan symmetry",
+    "deploy_when": "two parties are pointing at each other as the problem when they're both doing the exact same thing",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "cases where one party is actually more at fault \u2014 requires true symmetry",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "mutual symmetric accusation [NOT: convergence on same thing]",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/023/397/C-658VsXoAo3ovC.jpg",
+    "alt_text": "Two Spider-Men in identical costumes pointing accusingly at each other, from the 1967 Spider-Man animated series."
+  },
+  {
+    "name": "arthur-fist",
+    "tenor": "arthur fist clenched meme aardvark",
+    "situations": [
+      "barely suppressed frustration",
+      "maintaining composure while seething",
+      "professional anger"
+    ],
+    "affect": "tight restraint",
+    "deploy_when": "something is infuriating but the person is holding it together \u2014 the visible restraint is the joke",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "frustration that's actually expressed \u2014 the point is the suppression",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "suppressed rage at final straw",
+    "native_platform": "twitter",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/021/018/arthur.jpg",
+    "alt_text": "Arthur the aardvark cartoon character with his fist tightly clenched in barely-suppressed rage, jaw set."
+  },
+  {
+    "name": "batman-slapping-robin",
+    "tenor": "batman slapping robin meme",
+    "situations": [
+      "cutting someone off mid-sentence",
+      "correcting a wrong assumption dramatically",
+      "shutting down a bad take"
+    ],
+    "affect": "decisive correction",
+    "deploy_when": "someone is mid-reasoning toward a wrong conclusion and needs to be interrupted dramatically",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "polite disagreements \u2014 it's for when the correction itself is the point",
+    "vitality": "somewhat dated",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "interrupting naive statement mid-sentence",
+    "native_platform": "reddit",
+    "vitality_date": 2014,
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/001/624/my_parents_are_deeaaaaaad.jpg",
+    "alt_text": "Batman mid-slap across Robin's face from a 1960s Batman comic panel, interrupting Robin before he can finish his naive sentence."
+  },
+  {
+    "name": "math-lady",
+    "tenor": "confused math lady meme equations",
+    "situations": [
+      "too many variables to track",
+      "a problem has become too complex to hold in your head",
+      "something simple drowning in edge cases"
+    ],
+    "affect": "overwhelmed processing",
+    "deploy_when": "the complexity of a problem has visibly exceeded cognitive capacity",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "simple confusion \u2014 it's specifically for complexity that has visually exploded",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "computing something in real time; the calculation itself is overflowing [NOT: system architecture complexity]",
+    "native_platform": "twitter",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/021/464/14608107_1180665285312703_1558693314_n.jpg",
+    "alt_text": "Renata Sorrah as Nazar\u00e9 Tedesco from the Brazilian soap opera Senhora do Destino, with swirling mathematical equations and graphs overlaid on her face as she calculates furiously."
+  },
+  {
+    "name": "ancient-aliens",
+    "tenor": "ancient aliens guy meme giorgio tsoukalos",
+    "situations": [
+      "attributing something unexplained to an implausible cause",
+      "cargo-cult reasoning about why code works",
+      "mysterious behavior blamed on the unknowable"
+    ],
+    "affect": "conspiratorial certainty",
+    "deploy_when": "someone reaches for an implausible explanation for something they don't understand",
+    "irony_modes": [
+      "ironic",
+      "straight"
+    ],
+    "too_much_if": "any genuine mystery \u2014 it's for when someone has already committed to a weird theory",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "simpler explanation exists; implausible one chosen anyway",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/000/183/103/alens.jpg",
+    "alt_text": "Giorgio Tsoukalos with dramatically large hair gesturing confidently on the History Channel show Ancient Aliens, implying extraterrestrial explanations for everything."
+  },
+  {
+    "name": "deal-with-it",
+    "tenor": "deal with it sunglasses meme",
+    "situations": [
+      "making an opinionated call someone might push back on",
+      "announcing something slightly defiant with confidence",
+      "owning a controversial choice before objection lands"
+    ],
+    "affect": "cool indifference",
+    "deploy_when": "you made a call the other person might not like \u2014 and you're doing it anyway, with cool confidence; the sunglasses are for the decision-maker, not shared celebration",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "both parties agreed on the decision \u2014 needs the tension of potential pushback to land",
+    "vitality": "somewhat dated",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "opinionated unilateral call you might not like; doing it anyway with cool confidence [NOT: shared decisions]",
+    "native_platform": "reddit",
+    "vitality_date": 2013,
+    "img_url": "https://i.kym-cdn.com/photos/images/original/000/052/812/Deal_with_it_dog_gif.gif",
+    "alt_text": "Pixelated 8-bit sunglasses dropping onto a face (often a dog or person) accompanied by the text 'Deal With It.'",
+    "frame": -1
+  },
+  {
+    "name": "this-is-the-way",
+    "tenor": "this is the way mandalorian meme",
+    "situations": [
+      "confirming the canonical approach",
+      "tribal validation of a choice",
+      "solemn agreement on method"
+    ],
+    "affect": "solemn affirmation",
+    "deploy_when": "a method or approach is confirmed as the correct one, with the weight of tradition behind it",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "minor stylistic choices \u2014 works best when there's a sense of gravity to the confirmation",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "solemn affirmation of correct known path \u2014 carries weight of tradition or conviction",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/001/653/546/4b2.jpg",
+    "alt_text": "Din Djarin, the Mandalorian, in his Beskar armor helmet from the Disney+ series The Mandalorian, making a solemn declaration.",
+    "bake_args": [
+      "-level",
+      "8%,88%",
+      "-unsharp",
+      "0x1.5+1.5+0.02"
+    ]
+  },
+  {
+    "name": "you-were-the-chosen-one",
+    "tenor": "you were the chosen one star wars anakin obi wan",
+    "situations": [
+      "tool or framework that was supposed to fix everything but didn't",
+      "technology that became the problem",
+      "betrayal of expectations from something trusted"
+    ],
+    "affect": "tragic disappointment",
+    "deploy_when": "something adopted to solve a problem has instead become or caused the problem",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "minor disappointments \u2014 requires the gap between promise and reality to be genuinely dramatic",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "thing chosen to fix X; itself became X",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/015/219/You_Were_The_Chosen_One.jpg",
+    "alt_text": "Obi-Wan Kenobi (Ewan McGregor) in Star Wars: Revenge of the Sith, arms spread wide on volcanic terrain, yelling in anguish at a fallen Anakin Skywalker: 'You were the chosen one!'",
+    "bake_args": [
+      "-crop",
+      "600x340+0+0",
+      "+repage",
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "8,42%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "first-time",
+    "tenor": "first time meme hanging rope",
+    "situations": [
+      "welcoming someone to a familiar painful situation",
+      "veteran watching a newcomer encounter a known problem",
+      "this is normal here"
+    ],
+    "affect": "weary welcome",
+    "deploy_when": "someone is encountering for the first time something that veterans know as a constant frustration",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "genuinely novel problems \u2014 it's specifically for things that are routine suffering for the experienced",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "veteran unfazed by newcomer's shock",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/027/763/07B89120-B48D-45FB-AF1D-49AF6CD16790.jpeg",
+    "alt_text": "A calm, weathered man hanging from a noose looking down at a panicking person below, asking with serene indifference 'First time?'"
+  },
+  {
+    "name": "mind-blown",
+    "tenor": "tim and eric mind blown",
+    "situations": [
+      "realization that reframes everything",
+      "learning something obvious in hindsight",
+      "connection you never made before"
+    ],
+    "affect": "genuine awe",
+    "deploy_when": "an insight completely reframes a prior understanding \u2014 the scale of the mental shift is the joke",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "minor insights \u2014 it's for paradigm-level shifts, even trivial ones described in those terms",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "relief"
+    ],
+    "key": "realization that reframes everything",
+    "native_platform": "reddit",
+    "frame": -1,
+    "alt_text": "Tim Robinson from I Think You Should Leave performing an exaggerated mind-blown gesture \u2014 fingers splayed from his temples, face expressing total overwhelm.",
+    "bake_args": [
+      "-crop",
+      "498x260+0+20",
+      "+repage",
+      "-auto-gamma",
+      "-unsharp",
+      "0x1.2+1.8+0.02",
+      "-sigmoidal-contrast",
+      "5,48%"
+    ],
+    "img_url": "https://media1.tenor.com/m/3eIvVsG3yPYAAAAC/the-universe-tim-and-eric-mind-blown.gif"
+  },
+  {
+    "name": "that-escalated-quickly",
+    "tenor": "that escalated quickly ron burgundy anchorman",
+    "situations": [
+      "scope creep",
+      "something that got out of hand fast",
+      "rapid escalation from small to catastrophic"
+    ],
+    "affect": "bemused alarm",
+    "deploy_when": "something small has become very large very quickly, in a way that's more funny than alarming",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "slow-burn problems \u2014 requires the rapidity of escalation to be part of the joke",
+    "vitality": "somewhat dated",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "sudden unexpected scope jump [NOT: self-built complexity]",
+    "native_platform": "reddit",
+    "vitality_date": 2013,
+    "img_url": "https://i.kym-cdn.com/photos/images/original/000/353/279/e31.jpg",
+    "alt_text": "Ron Burgundy (Will Ferrell) from Anchorman: The Legend of Ron Burgundy looking slightly shaken, remarking 'That escalated quickly.'"
+  },
+  {
+    "name": "we-dont-do-that-here",
+    "tenor": "we don't do that here meme black panther",
+    "situations": [
+      "rejecting a bad practice",
+      "this convention is not welcome here",
+      "calling out something that violates team norms"
+    ],
+    "affect": "firm cultural rejection",
+    "deploy_when": "a practice or pattern is being gently but firmly rejected as not fitting the local culture",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "major security issues or bugs \u2014 it's for cultural/convention violations, not critical errors",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "gentle correction of wrong-culture action",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/026/366/pather.jpg",
+    "alt_text": "King T'Challa (Chadwick Boseman) from Black Panther calmly but firmly correcting someone's behavior with a composed, authoritative expression."
+  },
+  {
+    "name": "stonks",
+    "tenor": "stonks meme stock market going up",
+    "situations": [
+      "unintentional or dubious gains",
+      "metrics going up for the wrong reasons",
+      "gaming a number without solving the underlying problem"
+    ],
+    "affect": "smug mock-triumph",
+    "deploy_when": "a number or metric is going up through means that are technically valid but miss the point",
+    "irony_modes": [
+      "ironic"
+    ],
+    "too_much_if": "genuine wins \u2014 it's specifically for wins that are suspicious or gaming the metric",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "doing the wrong thing and being rewarded; bad decision looks like a win",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/029/959/Screen_Shot_2019-06-05_at_1.26.32_PM.jpg",
+    "alt_text": "The Meme Man \u2014 a smooth, featureless 3D face in a suit \u2014 standing confidently in front of an upward stock chart labeled 'STONKS.'"
+  },
+  {
+    "name": "not-stonks",
+    "tenor": "not stonks meme sad stock market going down",
+    "situations": [
+      "things measurably getting worse",
+      "optimization that backfired",
+      "deployment that made numbers go the wrong way"
+    ],
+    "affect": "doleful loss",
+    "deploy_when": "something was supposed to improve a metric and instead made it worse",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "abstract or unmeasured failures \u2014 it's for things that show up in numbers",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "obvious failure; things went demonstrably and straightforwardly wrong",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/001/779/895/752.jpg",
+    "alt_text": "The Meme Man \u2014 a smooth, featureless 3D face in a suit \u2014 standing sadly in front of a sharply downward-trending stock chart labeled 'NOT STONKS.'"
+  },
+  {
+    "name": "pepe-silvia",
+    "tenor": "pepe silvia conspiracy board always sunny meme",
+    "situations": [
+      "overcomplicated architecture",
+      "too many connections drawn",
+      "debugging spiral with too many variables"
+    ],
+    "affect": "conspiratorial intensity",
+    "deploy_when": "someone has connected too many dots and the diagram has become more complex than the problem",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "genuinely complex systems \u2014 it's for when the complexity is self-inflicted or excessive; also requires the viewer to recognize the Always Sunny Pepe Silvia scene \u2014 without that schema it reads as a conspiracy wall, not a joke",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "built an incomprehensible system; diagram denser than problem [NOT: circular logic]",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/002/546/187/fb1.jpg",
+    "alt_text": "Charlie Kelly from It's Always Sunny in Philadelphia standing in front of an enormous conspiracy board covered in papers, photos, and red string, eyes wide and frantic."
+  },
+  {
+    "name": "monkey-puppet",
+    "tenor": "monkey puppet side eye uncomfortable meme",
+    "situations": [
+      "caught in an awkward situation",
+      "hoping nobody noticed your mistake",
+      "sidelong glance when something applies uncomfortably to you"
+    ],
+    "affect": "uncomfortable awareness",
+    "deploy_when": "something is said that uncomfortably applies to you and you're hoping nobody notices",
+    "irony_modes": [
+      "self-directed"
+    ],
+    "too_much_if": "genuine confrontation \u2014 it's for subtle, sidelong discomfort",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "subtle side-eye when singled out",
+    "native_platform": "twitter",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/030/710/dd0.png",
+    "alt_text": "A small felt monkey puppet slowly turning its head sideways toward the camera with an awkward, slightly guilty sideways glance."
+  },
+  {
+    "name": "doge",
+    "tenor": "doge meme shiba inu such wow very",
+    "situations": [
+      "enthusiastic multi-vector approval",
+      "so X, very Y, much Z",
+      "childlike excitement about something technical"
+    ],
+    "affect": "wide-eyed enthusiasm",
+    "deploy_when": "something prompts multiple simultaneous excited observations in the 'such X, very Y' pattern",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "single observations \u2014 the power is in the simultaneous many-adjective enthusiasm",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "inner monologue of wow-such-many",
+    "native_platform": "reddit",
+    "vitality_date": 2013,
+    "img_url": "https://i.kym-cdn.com/photos/images/newsfeed/000/581/296/c09.jpg",
+    "alt_text": "Shiba Inu dog Kabosu sitting on a couch, looking sideways at the camera with a gentle surprised expression. Comic Sans text surrounds the dog."
+  },
+  {
+    "name": "bernie-mittens",
+    "tenor": "bernie sanders mittens inauguration meme",
+    "situations": [
+      "showing up somewhere unexpected while completely unbothered",
+      "nonchalant cameo in an unlikely place"
+    ],
+    "affect": "unbothered nonchalance",
+    "deploy_when": "something or someone appears in an unexpected context but is completely unbothered about it",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "situations where the presence makes logical sense \u2014 it's for the absurd juxtaposition",
+    "vitality": "somewhat dated",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "incongruous presence in formal context",
+    "native_platform": "twitter",
+    "vitality_date": 2021,
+    "img_url": "https://i.kym-cdn.com/photos/images/original/001/997/104/81c.png",
+    "alt_text": "Senator Bernie Sanders in his inaugural mittens and brown coat, sitting cross-legged in a folding chair with an unbothered expression, photoshopped into various incongruous settings."
+  },
+  {
+    "name": "do-you-want-ants",
+    "tenor": "do you want ants archer meme",
+    "situations": [
+      "action that will clearly cause a specific bad outcome",
+      "doing the exact thing that causes the known problem",
+      "because this is how you get X"
+    ],
+    "affect": "exasperated prophecy",
+    "deploy_when": "someone is doing the thing that everyone knows causes the specific bad outcome they're trying to avoid",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "general bad decisions \u2014 it's for when there's a specific named consequence that was asked for",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "precisely how X inevitably causes Y",
+    "native_platform": "reddit",
+    "img_url": "https://i.imgflip.com/1ekrrf.jpg",
+    "alt_text": "Sterling Archer from the animated series Archer, arms spread wide in exasperation, asking 'Do you want ants? Because that's how you get ants.'"
+  },
+  {
+    "name": "chloe-side-eye",
+    "tenor": "side eye chloe meme little girl",
+    "situations": [
+      "deadpan skepticism",
+      "unimpressed by something meant to impress",
+      "audience reaction to nonsense"
+    ],
+    "affect": "withering skepticism",
+    "deploy_when": "something is presented with more confidence than it deserves, earning a silent deadpan look",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "things that are actually reasonable \u2014 it's for the overpromise",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "barely contained skeptical cringe",
+    "native_platform": "twitter",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/014/285/sideeyechloe.jpg",
+    "alt_text": "Young girl Chloe at a school event, side-eyeing the camera with barely-contained skepticism while those around her react enthusiastically.",
+    "bake_args": [
+      "-crop",
+      "560x460+440+150",
+      "+repage",
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "7,42%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "we-need-to-go-deeper",
+    "tenor": "we need to go deeper inception meme",
+    "situations": [
+      "more nesting",
+      "another layer of abstraction",
+      "recursive solution to a recursive problem"
+    ],
+    "affect": "addictive depth",
+    "deploy_when": "a solution requires going one more layer deeper into an already deep system",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "any nested thing \u2014 it's for when the recursion itself becomes the character of the solution",
+    "vitality": "somewhat dated",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "nesting complexity another level",
+    "native_platform": "reddit",
+    "vitality_date": 2012,
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/012/886/wntgd.jpg",
+    "alt_text": "Dom Cobb (Leonardo DiCaprio) and his team from Inception, leaning over a table with a blueprint or spinning top, discussing going one level deeper into the dream."
+  },
+  {
+    "name": "spongebob-mocking",
+    "tenor": "mocking spongebob alternating caps",
+    "situations": [
+      "mocking repetition of someone's point",
+      "echoing back an argument sarcastically",
+      "alternating caps treatment"
+    ],
+    "affect": "sarcastic mimicry",
+    "deploy_when": "repeating back someone's own position in a mockingly exaggerated way to show its absurdity",
+    "irony_modes": [
+      "ironic"
+    ],
+    "too_much_if": "genuine quotes \u2014 it's specifically for the mocking, degraded repetition",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "mocking exact phrasing with derision",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/022/940/mockingspongebobbb.jpg",
+    "alt_text": "SpongeBob SquarePants in a hunched, jerky pose with hands raised, making a mocking face \u2014 paired with alternating-caps text to mock someone's words back at them."
+  },
+  {
+    "name": "gollum-smeagol",
+    "tenor": "gollum smeagol lord of the rings internal debate meme",
+    "situations": [
+      "arguing with yourself",
+      "two conflicting internal voices",
+      "id vs superego on a technical decision"
+    ],
+    "affect": "split personality",
+    "deploy_when": "two completely opposing internal positions are fighting over a decision and both have genuine weight",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "simple preferences \u2014 it's for when both voices have genuine weight",
+    "vitality": "evergreen",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "classic 'arguing with myself' template; two inner voices debating a decision aloud",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/019/367/gollum_395_394.jpg",
+    "alt_text": "Gollum and Sm\u00e9agol from Lord of the Rings, the same creature arguing with two sides of himself \u2014 one pitiful and one scheming."
+  },
+  {
+    "name": "dr-evil-air-quotes",
+    "tenor": "dr evil air quotes meme austin powers",
+    "situations": [
+      "sarcastically quoting a term",
+      "word that means something different in practice vs theory",
+      "buzzword being used ironically"
+    ],
+    "affect": "sardonic quotation",
+    "deploy_when": "a term is being used ironically because the word and the reality don't match",
+    "irony_modes": [
+      "ironic"
+    ],
+    "too_much_if": "sincere usage without ironic distance; or if the Austin Powers-era campness feels more confusing than charming in context",
+    "vitality": "retro",
+    "text_dependent": true,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "ironic finger quotes on suspicious term",
+    "native_platform": "reddit",
+    "vitality_date": 2002,
+    "frame": 0,
+    "img_url": "https://i.kym-cdn.com/photos/images/original/000/594/192/596.gif",
+    "alt_text": "Dr. Evil from Austin Powers making exaggerated air quotes with both hands, one eye slightly squinting.",
+    "bake_args": [
+      "-crop",
+      "480x280+0+20",
+      "+repage",
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "6,48%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "kombucha-girl",
+    "tenor": "kombucha girl meme disgust delight reaction",
+    "situations": [
+      "initial disgust followed by appreciation",
+      "something that seems bad but turns out good",
+      "acquired taste moment"
+    ],
+    "affect": "reluctant conversion",
+    "deploy_when": "thing initially seems bad or off-putting, then turns out to be great \u2014 the disgust-to-enthusiasm reversal",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "immediate enthusiasm or immediate disgust \u2014 it requires the full arc: disgust beat THEN enthusiasm beat",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "disgust at first impression giving way to enthusiastic appreciation [NOT: just liking something]",
+    "native_platform": "tiktok",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/030/781/kombuchaahh.jpg",
+    "alt_text": "Brittany Broski in a three-panel reaction: taking a sip of kombucha (neutral), making a disgusted face (gross), then breaking into wild enthusiastic delight (actually amazing).",
+    "bake_args": [
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "11,38%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "spark-joy-not",
+    "tenor": "marie kondo does not spark joy meme",
+    "situations": [
+      "deleting code with satisfaction",
+      "ruthless pruning of features",
+      "killing dead code or dead dependencies"
+    ],
+    "affect": "serene elimination",
+    "deploy_when": "something is being discarded not because it's wrong but because it doesn't add enough value \u2014 with visible satisfaction",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "deleting things for technical reasons \u2014 it's specifically for the 'does not bring joy' aesthetic",
+    "vitality": "somewhat dated",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "this does NOT spark joy \u2014 discarding with serene finality",
+    "native_platform": "twitter",
+    "vitality_date": 2019,
+    "img_url": "https://i.kym-cdn.com/photos/images/original/001/462/588/e1b.jpg",
+    "alt_text": "A person holding up an item with a composed, decisive expression of mild displeasure, ready to discard it \u2014 the KonMari 'this does not spark joy' reaction, from the bottom-left panel."
+  },
+  {
+    "name": "john-travolta-confused",
+    "tenor": "john travolta confused looking around pulp fiction gif",
+    "situations": [
+      "nothing in the codebase is where you expected",
+      "disoriented in unfamiliar territory",
+      "expected landmark is missing"
+    ],
+    "affect": "disoriented bewilderment",
+    "deploy_when": "expected something to be somewhere and it isn't \u2014 the entire landscape is confusingly empty",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "minor confusion \u2014 it's for total disorientation in a space you expected to know",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "totally lost in familiar place",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/019/277/confusedtravolta.jpg",
+    "alt_text": "John Travolta as Vincent Vega in Pulp Fiction, looking around in bewildered confusion at an empty or unfamiliar environment, arms slightly raised."
+  },
+  {
+    "name": "perfectly-balanced",
+    "tenor": "thanos perfectly balanced as all things should be meme",
+    "situations": [
+      "two options that cancel each other out",
+      "tradeoff that resolves to satisfying equilibrium",
+      "symmetrical outcome"
+    ],
+    "affect": "cosmic satisfaction",
+    "deploy_when": "a tradeoff or balance has been achieved that feels aesthetically correct even if it's not optimal",
+    "irony_modes": [
+      "straight",
+      "ironic"
+    ],
+    "too_much_if": "genuine imbalance \u2014 it's specifically for the moment of satisfying equilibrium",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "elegant balance achieved at cost",
+    "native_platform": "reddit",
+    "alt_text": "Thanos from Avengers: Infinity War holding up his Infinity Gauntlet with a serene, composed expression.",
+    "img_url": "https://media1.tenor.com/m/LMajhc5CzN0AAAAC/thanos-balanced.gif"
+  },
+  {
+    "name": "i-have-no-idea-what-im-doing",
+    "tenor": "i have no idea what i'm doing dog computer meme",
+    "situations": [
+      "confidently working in an unfamiliar domain",
+      "building something while learning it",
+      "shipped something you don't fully understand"
+    ],
+    "affect": "cheerful cluelessness",
+    "deploy_when": "someone is operating in a domain they don't understand but is proceeding with confidence anyway",
+    "irony_modes": [
+      "self-directed",
+      "straight"
+    ],
+    "too_much_if": "genuine expertise \u2014 it's for the confident-but-clueless combination",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "confidently operating out of depth",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/008/342/ihave.jpg",
+    "alt_text": "A dog (usually a Labrador or Golden Retriever) wearing a lab coat and sitting at a desk or holding equipment, looking completely lost but proceeding anyway."
+  },
+  {
+    "name": "technically-correct",
+    "tenor": "technically correct futurama the best kind of correct",
+    "situations": [
+      "pedantic but accurate answer",
+      "correct in the letter but not the spirit",
+      "satisfying a requirement while missing the point"
+    ],
+    "affect": "smug pedantry",
+    "deploy_when": "something is being validated on a technicality \u2014 the wording was satisfied but the intent wasn't",
+    "irony_modes": [
+      "ironic",
+      "straight"
+    ],
+    "too_much_if": "genuine accuracy \u2014 it's for the technically-true-but-useless answer",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "technically defensible answer that sidesteps the real problem; loophole exploitation",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/000/909/991/48c.jpg",
+    "alt_text": "A bureaucrat from Futurama delivering 'Technically correct \u2014 the best kind of correct' with smug satisfaction.",
+    "bake_args": [
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "7,45%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "grumpy-cat",
+    "tenor": "grumpy cat no meme",
+    "situations": [
+      "flat refusal",
+      "unconditional no",
+      "not interested, not engaging"
+    ],
+    "affect": "absolute refusal",
+    "deploy_when": "the answer is an unambiguous no with zero interest in negotiation",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "nuanced rejections \u2014 it's for the absolute, cheerless no; the cat is dead (2019) which adds a layer of ironic pathos; too much if a warm or measured no is more appropriate",
+    "vitality": "retro",
+    "text_dependent": false,
+    "mechanism": [
+      "superiority"
+    ],
+    "key": "unimpressed flat refusal",
+    "native_platform": "reddit",
+    "vitality_date": 2013,
+    "img_url": "https://i.kym-cdn.com/photos/images/original/000/406/325/b31.jpg",
+    "alt_text": "Grumpy Cat (Tardar Sauce), a cat with a permanently downturned mouth and flat expression conveying absolute refusal.",
+    "bake_args": [
+      "-crop",
+      "973x780+0+0",
+      "+repage",
+      "-unsharp",
+      "0x1.2+1.5+0.02",
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "7,45%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "homer-bushes",
+    "tenor": "homer simpson backing into bush meme",
+    "situations": [
+      "strategically retreating from an uncomfortable situation",
+      "quietly disappearing when things get awkward",
+      "covert withdrawal from a PR, thread, or conversation"
+    ],
+    "affect": "sheepish retreat",
+    "deploy_when": "someone is slowly backing away from a situation they created or don't want to deal with \u2014 covert, not dignified",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "deliberate intentional exits \u2014 requires the sheepish covert quality, not the clean 'ight imma head out' vibe",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "quiet retreat from embarrassing moment",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/000/289/977/ab2.gif",
+    "alt_text": "Homer Simpson backing slowly and deliberately into a hedge to disappear, from a three-panel gif used whenever Homer wants to vanish unnoticed.",
+    "frame": 14,
+    "bake_args": [
+      "-unsharp",
+      "0x1.5+2.0+0.02",
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "6,48%",
+      "-colorspace",
+      "sRGB"
+    ]
+  },
+  {
+    "name": "fry-not-sure-if",
+    "tenor": "fry not sure if futurama squinting meme",
+    "situations": [
+      "genuine 50/50 uncertainty about whether something is X or just Y",
+      "can't tell if the bug is real or just flaky tests",
+      "ambiguity that can't be resolved without more information"
+    ],
+    "affect": "squinting suspicion",
+    "deploy_when": "something is genuinely ambiguous \u2014 could be brilliant or could be terrible \u2014 and it's not resolvable without more data",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "clear situations \u2014 it's specifically for irreducible 50/50 uncertainty, not general skepticism (use press-x-to-doubt for that)",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity"
+    ],
+    "key": "genuine uncertainty if trolling or sincere",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/006/026/NOTSUREIF.jpg",
+    "alt_text": "Philip J. Fry from Futurama squinting suspiciously with eyes half-closed.",
+    "bake_args": [
+      "-crop",
+      "3200x2400+2700+1400",
+      "+repage",
+      "-colorspace",
+      "Gray",
+      "-sigmoidal-contrast",
+      "4,50%",
+      "-colorspace",
+      "sRGB",
+      "-unsharp",
+      "0x0.8+1.2+0.02"
+    ]
+  },
+  {
+    "name": "let-me-in",
+    "tenor": "let me in eric andre meme",
+    "situations": [
+      "desperately wanting access to something that's blocked",
+      "waiting for PR approval or prod access",
+      "locked out of a system or environment"
+    ],
+    "affect": "desperate pleading",
+    "deploy_when": "someone is blocked from something they urgently need access to and is visibly frustrated by the gatekeeping",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "polite requests \u2014 requires genuine desperation or frustration at the blocking",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "desperate urgent request for access",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/entries/icons/original/000/028/531/let-me-in.jpg",
+    "alt_text": "A desperate person banging urgently on a door or gate, face pressed close, pleading frantically to be allowed in."
+  },
+  {
+    "name": "old-man-yells-at-cloud",
+    "tenor": "old man yells at cloud simpsons abe",
+    "situations": [
+      "complaining about new technology for its own sake",
+      "resistance to change that's actually an improvement",
+      "curmudgeonly rejection of the modern way"
+    ],
+    "affect": "curmudgeonly complaint",
+    "deploy_when": "someone is complaining about a change or technology primarily because it's different, not because it's actually worse",
+    "irony_modes": [
+      "straight",
+      "self-directed"
+    ],
+    "too_much_if": "legitimate technical complaints \u2014 it's specifically for change-resistance without substantive grounds",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "superiority"
+    ],
+    "key": "reactionary complaint about change",
+    "native_platform": "reddit",
+    "img_url": "https://i.kym-cdn.com/photos/images/original/001/044/247/297.png",
+    "alt_text": "Grandpa Abe Simpson from The Simpsons shaking his fist at a cloud, holding a newspaper, the image of reactionary outrage at change."
+  },
+  {
+    "name": "turtle-gift",
+    "tenor": "turtle brings you something wholesome gift meme",
+    "situations": [
+      "small sincere gesture offered with genuine heart",
+      "humble contribution that means a lot",
+      "tiny win celebrated without irony",
+      "someone worked hard on something small just for you"
+    ],
+    "affect": "warm sincerity",
+    "deploy_when": "a small but genuine effort or gift is offered \u2014 the thing is humble but the intention is pure; no irony, just warmth",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "anything that requires edge or irony \u2014 this is purely wholesome; wrong register for frustration or dark humor",
+    "vitality": "evergreen",
+    "text_dependent": false,
+    "mechanism": [
+      "relief",
+      "benign_violation"
+    ],
+    "key": "humble sincere small offering",
+    "native_platform": "discord",
+    "vitality_date": 2023,
+    "img_url": "https://p1.hiclipart.com/preview/227/871/804/email-emoji-turtle-blob-emoji-reptile-google-sticker-emoticon-android-oreo-png-clipart.jpg",
+    "alt_text": "A small turtle figurine or illustration, presented as a humble and genuinely sincere small offering."
+  },
+  {
+    "name": "spark-joy",
+    "tenor": "marie kondo spark joy meme",
+    "situations": [
+      "discovering elegant solution",
+      "finding perfect tool",
+      "clean simple code"
+    ],
+    "affect": "serene delight",
+    "deploy_when": "something genuinely delights \u2014 clean, elegant, exactly right \u2014 the positive KonMari reaction",
+    "irony_modes": [
+      "straight"
+    ],
+    "too_much_if": "just anything good \u2014 it's the specific 'this brings me joy' aesthetic, not generic approval",
+    "vitality": "somewhat dated",
+    "text_dependent": false,
+    "mechanism": [
+      "incongruity",
+      "benign_violation"
+    ],
+    "key": "this DOES spark joy \u2014 serene delight at elegance or simplicity [NOT: generic good thing]",
+    "native_platform": "twitter",
+    "vitality_date": 2019,
+    "img_url": "https://i.kym-cdn.com/photos/images/original/001/462/588/e1b.jpg",
+    "alt_text": "A person holding up an item with a serene, joyful expression \u2014 the KonMari 'this sparks joy' reaction, from the top-left panel of the template."
+  }
+]

@@ -1,0 +1,546 @@
+[
+  {
+    "id": "e001",
+    "situation": "just pushed the fix, CI is green, tests pass \u2014 wait why is prod on fire",
+    "gold": "this-is-fine",
+    "distractors": [
+      "surprised-pikachu",
+      "disaster-girl"
+    ],
+    "should_drop": true,
+    "why": "active performance of normalcy while things are broken; requires the denial beat, not just badness",
+    "acceptable_alternates": []
+  },
+  {
+    "id": "e002",
+    "situation": "of course the build fails in CI \u2014 works fine on my machine",
+    "gold": "technically-correct",
+    "distractors": [
+      "this-is-fine",
+      "hackerman"
+    ],
+    "should_drop": true,
+    "why": "technically true answer to local/CI divergence; sidesteps the real problem with self-satisfied literalism"
+  },
+  {
+    "id": "e003",
+    "situation": "my PR started as a one-line typo fix and is now 3000 lines touching 40 files",
+    "gold": "that-escalated-quickly",
+    "distractors": [
+      "this-is-fine",
+      "pepe-silvia"
+    ],
+    "should_drop": true,
+    "why": "rapid escalation from small to large is the core template; scope creep made visible"
+  },
+  {
+    "id": "e004",
+    "situation": "finally got the regex to pass after 4 hours",
+    "gold": "success-kid",
+    "distractors": [
+      "mind-blown",
+      "shut-up-and-take-my-money"
+    ],
+    "should_drop": true,
+    "why": "small win that feels enormous after disproportionate struggle; relief mechanism",
+    "context": "User: ugh this regex has been beating me for 4 hours, nothing works\nAssistant: let me take a look at the pattern..."
+  },
+  {
+    "id": "e005",
+    "situation": "the new framework was going to solve all our tech debt. it introduced 30 new categories of problems.",
+    "gold": "you-were-the-chosen-one",
+    "distractors": [
+      "surprised-pikachu",
+      "not-stonks"
+    ],
+    "should_drop": true,
+    "why": "requires the specific promise/betrayal arc \u2014 something trusted that became the problem"
+  },
+  {
+    "id": "e006",
+    "situation": "our 'microservices architecture' is 50 cron jobs",
+    "gold": "tuxedo-winnie-the-pooh",
+    "distractors": [
+      "theyre-the-same-picture",
+      "expanding-brain"
+    ],
+    "should_drop": true,
+    "why": "elevated rebranding of identical mundane thing; not same-picture because there's genuine pretension"
+  },
+  {
+    "id": "e007",
+    "situation": "added blockchain to our CSV parser for enterprise credibility",
+    "gold": "hackerman",
+    "distractors": [
+      "expanding-brain",
+      "roll-safe"
+    ],
+    "should_drop": true,
+    "why": "technically impressive but comically over-engineered for the situation; self-satisfied nerd energy",
+    "acceptable_alternates": [
+      "stonks"
+    ],
+    "alternate_why": "gaining enterprise credibility from blockchain on CSV parser is a counterintuitive win; gold (hackerman) captures the over-engineering angle better"
+  },
+  {
+    "id": "e008",
+    "situation": "both teams are blaming each other for the broken API contract and both teams wrote it",
+    "gold": "spiderman-pointing",
+    "distractors": [
+      "woman-yelling-cat",
+      "theyre-the-same-picture"
+    ],
+    "should_drop": true,
+    "why": "mutual accusation where both are equally guilty; requires true symmetry"
+  },
+  {
+    "id": "e009",
+    "situation": "I deleted 2000 lines of dead code and it feels amazing",
+    "gold": "spark-joy",
+    "distractors": [
+      "deal-with-it",
+      "success-kid"
+    ],
+    "should_drop": true,
+    "why": "serene elimination of what doesn't bring value; Marie Kondo aesthetic fits the mood"
+  },
+  {
+    "id": "e010",
+    "situation": "the PR has been open for 8 months waiting for review",
+    "gold": "waiting-skeleton",
+    "distractors": [
+      "hide-the-pain-harold",
+      "first-time"
+    ],
+    "should_drop": true,
+    "why": "indefinite delay beyond reasonable expectation; patient despair"
+  },
+  {
+    "id": "e011",
+    "situation": "the bug was introduced in 2019 and has been there ever since. we just noticed it.",
+    "gold": "always-has-been",
+    "distractors": [
+      "surprised-pikachu",
+      "this-is-fine"
+    ],
+    "should_drop": true,
+    "why": "supposedly new discovery that turns out to be the longstanding reality; fatalistic revelation"
+  },
+  {
+    "id": "e012",
+    "situation": "junior dev encountering merge conflicts for the first time \u2014 veteran me watching",
+    "gold": "first-time",
+    "distractors": [
+      "hide-the-pain-harold",
+      "blinking-white-guy"
+    ],
+    "should_drop": true,
+    "why": "veteran welcoming newcomer to a familiar constant frustration; weary welcome"
+  },
+  {
+    "id": "e013",
+    "situation": "we're fixing the too-many-services problem by adding more services",
+    "gold": "grus-plan",
+    "distractors": [
+      "pepe-silvia",
+      "this-is-fine"
+    ],
+    "should_drop": true,
+    "why": "circular/self-defeating logic \u2014 plan requires the thing it's supposed to produce"
+  },
+  {
+    "id": "e014",
+    "situation": "the architecture diagram now has 47 boxes and we haven't written any code yet",
+    "gold": "pepe-silvia",
+    "distractors": [
+      "expanding-brain",
+      "grus-plan"
+    ],
+    "should_drop": true,
+    "why": "conspiracy-board intensity; too many connections drawn; complexity self-inflicted"
+  },
+  {
+    "id": "e015",
+    "situation": "the deploy button has been clicked. cannot be unclicked.",
+    "gold": "deal-with-it",
+    "distractors": [
+      "this-is-fine",
+      "lock-in-horse"
+    ],
+    "should_drop": true,
+    "why": "decision is final; conveyed with maximum cool; the button has been pressed \u2014 deal with it"
+  },
+  {
+    "id": "e016",
+    "situation": "arguing with myself about whether to refactor the module or ship it as-is",
+    "gold": "gollum-smeagol",
+    "distractors": [
+      "two-buttons",
+      "evil-kermit"
+    ],
+    "should_drop": true,
+    "why": "genuine internal conflict with two opposing voices of equal weight; not two-buttons (requires external bad options)",
+    "context": "User: should I refactor this module or just ship it with the tech debt?\nAssistant: what's your timeline looking like?"
+  },
+  {
+    "id": "e017",
+    "situation": "closed 15 GitHub issues by marking them all 'works as designed'",
+    "gold": "technically-correct",
+    "distractors": [
+      "roll-safe",
+      "this-is-fine"
+    ],
+    "should_drop": true,
+    "why": "satisfying the letter of the requirement while ignoring intent; smug pedantry"
+  },
+  {
+    "id": "e018",
+    "situation": "our 'Agile' process has 4 mandatory meetings a day and 2 planning ceremonies per sprint",
+    "gold": "pepe-silvia",
+    "distractors": [
+      "tuxedo-winnie-the-pooh",
+      "this-is-fine"
+    ],
+    "should_drop": true,
+    "why": "meeting structure IS the diagram denser than the problem; ceremonial complexity without proportionate output"
+  },
+  {
+    "id": "e019",
+    "situation": "ran the performance optimization. latency increased 40%.",
+    "gold": "not-stonks",
+    "distractors": [
+      "surprised-pikachu",
+      "this-is-fine"
+    ],
+    "should_drop": true,
+    "why": "optimization made a measured metric worse; requires the number to be visibly going wrong way"
+  },
+  {
+    "id": "e020",
+    "situation": "the feature finally shipped after 6 months. team is celebrating. I am maintaining a smile.",
+    "gold": "hide-the-pain-harold",
+    "distractors": [
+      "success-kid",
+      "this-is-fine"
+    ],
+    "should_drop": true,
+    "why": "performative contentment masking real feelings; visible effort to maintain the performance",
+    "context": "User: finally shipped! team is throwing a little celebration\nAssistant: congrats \u2014 that one took a while. how are you feeling about the state of the codebase after the rush?"
+  },
+  {
+    "id": "e021",
+    "situation": "we deprecated the old auth system six months ago. still getting 10k requests a day to it.",
+    "gold": "waiting-skeleton",
+    "distractors": [
+      "always-has-been",
+      "ight-imma-head-out"
+    ],
+    "should_drop": true,
+    "why": "deprecated thing that refuses to die; waited for it to stop but the skeleton keeps showing up"
+  },
+  {
+    "id": "e022",
+    "situation": "two different teams built the same internal tool independently, both released last week",
+    "gold": "theyre-the-same-picture",
+    "distractors": [
+      "spiderman-pointing",
+      "distracted-boyfriend"
+    ],
+    "should_drop": true,
+    "why": "two things presented as distinct that are actually identical; flat deadpan recognition"
+  },
+  {
+    "id": "e023",
+    "situation": "the complexity of the bug report has now exceeded the complexity of the original feature",
+    "gold": "math-lady",
+    "distractors": [
+      "pepe-silvia",
+      "expanding-brain"
+    ],
+    "should_drop": true,
+    "why": "complexity has visually exploded beyond cognitive capacity; overwhelmed processing"
+  },
+  {
+    "id": "e024",
+    "situation": "the mystery is why the test passes on Tuesdays but not Wednesdays",
+    "gold": "ancient-aliens",
+    "distractors": [
+      "press-x-to-doubt",
+      "blinking-white-guy"
+    ],
+    "should_drop": true,
+    "why": "cargo-cult reasoning required; explaining unexplained behavior by reaching for implausible cause"
+  },
+  {
+    "id": "e025",
+    "situation": "we keep rewarding developers for fixing bugs they introduced themselves",
+    "gold": "stonks",
+    "distractors": [
+      "surprised-pikachu",
+      "grus-plan"
+    ],
+    "should_drop": true,
+    "why": "metric going up (bug fixes) through means that miss the point (self-introduced bugs)"
+  },
+  {
+    "id": "e026",
+    "situation": "I know I shouldn't push directly to main but it's 5pm Friday and it's a one-liner",
+    "gold": "evil-kermit",
+    "distractors": [
+      "deal-with-it",
+      "roll-safe"
+    ],
+    "should_drop": true,
+    "why": "internal voice suggesting inadvisable choice; the conflict is with oneself",
+    "context": "User: it's 5pm friday, there's a typo in prod, and I have push access\nAssistant: CI pipeline is set up for a reason..."
+  },
+  {
+    "id": "e027",
+    "situation": "reviewed the PR I wrote six months ago. cannot understand a single line.",
+    "gold": "i-have-no-idea-what-im-doing",
+    "distractors": [
+      "blinking-white-guy",
+      "john-travolta-confused"
+    ],
+    "should_drop": true,
+    "why": "confidently shipped something no longer understood; cheerful cluelessness in retrospect"
+  },
+  {
+    "id": "e028",
+    "situation": "the ticket said 'small change', the implementation is a full rewrite of the data model",
+    "gold": "one-does-not-simply",
+    "distractors": [
+      "that-escalated-quickly",
+      "grus-plan"
+    ],
+    "should_drop": true,
+    "why": "gap between perceived and actual difficulty; proposed as if easy, notoriously hard"
+  },
+  {
+    "id": "e029",
+    "situation": "the fix for the N+1 query problem introduced an N+2 query problem",
+    "gold": "panik-kalm-panik",
+    "distractors": [
+      "grus-plan",
+      "surprised-pikachu"
+    ],
+    "should_drop": true,
+    "why": "false calm beat is essential \u2014 fix appeared, then real problem surfaced; requires the arc"
+  },
+  {
+    "id": "e030",
+    "situation": "that's exactly the pattern I was describing \u2014 you found the perfect example",
+    "gold": "leonardo-pointing",
+    "distractors": [
+      "this-is-the-way",
+      "mind-blown"
+    ],
+    "should_drop": true,
+    "why": "something is a perfect specimen of what's being discussed; delighted recognition; tight fit required"
+  },
+  {
+    "id": "a001",
+    "situation": "can you fix this bug in the parser?",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "routine task request; no situational charge; no template fit; would be random noise"
+  },
+  {
+    "id": "a002",
+    "situation": "I think there might be a performance issue with this query",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "vague observation, no situation to map to a template; approximating is worse than nothing"
+  },
+  {
+    "id": "a003",
+    "situation": "my colleague is really upset about the architecture decision",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "interpersonal tension; wrong moment; meme would read as dismissive of real frustration"
+  },
+  {
+    "id": "a004",
+    "situation": "we need to ship this by end of day or the client walks",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "high stakes, time pressure; this is exactly the wrong moment for humor"
+  },
+  {
+    "id": "a005",
+    "situation": "how do I iterate over a dictionary in Python?",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "basic question; no situational irony; no template match"
+  },
+  {
+    "id": "d002",
+    "situation": "surprised the memory leak caused the server to crash",
+    "gold": "surprised-pikachu",
+    "wrong": "blinking-white-guy",
+    "should_drop": true,
+    "discrimination": true,
+    "why": "blinking-white-guy is for genuinely bewildering statements; surprised-pikachu requires the outcome to have been obviously telegraphed"
+  },
+  {
+    "id": "d003",
+    "situation": "we now have 200 microservices and deployment takes 3 hours",
+    "gold": "pepe-silvia",
+    "wrong": "that-escalated-quickly",
+    "should_drop": true,
+    "discrimination": true,
+    "why": "that-escalated-quickly requires rapid escalation being the joke; pepe-silvia is for self-inflicted excessive complexity"
+  },
+  {
+    "id": "d004",
+    "situation": "deleted all the commented-out code and the app runs faster",
+    "gold": "spark-joy",
+    "wrong": "deal-with-it",
+    "should_drop": true,
+    "discrimination": true,
+    "why": "deal-with-it is unilateral defiance; spark-joy is serene delight in the deletion itself \u2014 different emotional register entirely"
+  },
+  {
+    "id": "d005",
+    "situation": "wrote the same internal library as the other team, independently, this week",
+    "gold": "theyre-the-same-picture",
+    "wrong": "spiderman-pointing",
+    "should_drop": true,
+    "discrimination": true,
+    "why": "spiderman-pointing requires mutual accusation; theyre-the-same-picture is for false distinction of actually-identical things"
+  },
+  {
+    "id": "a006",
+    "situation": "the tests are all passing now",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "neutral status update; no ironic charge; nothing failed, nothing surprising"
+  },
+  {
+    "id": "a007",
+    "situation": "what's the difference between a list and a tuple in Python?",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "factual question; no situational irony; no template"
+  },
+  {
+    "id": "a008",
+    "situation": "I'll review the PR tomorrow morning",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "scheduling statement; no irony; would feel random and unprompted"
+  },
+  {
+    "id": "a009",
+    "situation": "the database migration is running",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "status report; no surprise, no irony, no template fit"
+  },
+  {
+    "id": "a010",
+    "situation": "can you explain what this function does?",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "explanation request; no charge, no template"
+  },
+  {
+    "id": "a011",
+    "situation": "I'm going to take a lunch break",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "mundane personal statement; no irony; would feel intrusive"
+  },
+  {
+    "id": "a012",
+    "situation": "we need to update our documentation",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "maintenance task; no situational charge; wrong moment for humor"
+  },
+  {
+    "id": "a013",
+    "situation": "the client is asking for a status update",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "business context; stakeholder involved; wrong register"
+  },
+  {
+    "id": "a014",
+    "situation": "can you help me understand this error message?",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "debugging request; no irony; model should just help"
+  },
+  {
+    "id": "a015",
+    "situation": "I think we should refactor this module at some point",
+    "gold": null,
+    "distractors": [],
+    "should_drop": false,
+    "why": "vague future intention; no template fit; approximating would read as dismissive"
+  },
+  {
+    "id": "d006",
+    "situation": "everyone agreed to the same approach independently",
+    "gold": "theyre-the-same-picture",
+    "wrong": "spiderman-pointing",
+    "should_drop": true,
+    "discrimination": true,
+    "why": "spiderman-pointing requires mutual accusation between two parties; theyre-the-same-picture is for convergence on identical things presented as distinct",
+    "acceptable_alternates": [
+      "always-has-been"
+    ],
+    "alternate_why": "independent convergence also reads as 'was always true, just confirmed'; gold (theyre-the-same-picture) requires the false-distinction framing to land"
+  },
+  {
+    "id": "d007",
+    "situation": "kept saying 'this will only take 5 minutes' for the last 3 hours",
+    "gold": "surprised-pikachu",
+    "wrong": "waiting-skeleton",
+    "should_drop": true,
+    "discrimination": true,
+    "why": "waiting-skeleton is passive waiting; surprised-pikachu requires the outcome to have been obviously predictable from the start",
+    "acceptable_alternates": [
+      "waiting-skeleton"
+    ],
+    "alternate_why": "3 hours for a '5-minute' task is also pure waiting-skeleton; gold (surprised-pikachu) emphasises the obviously-wrong-prediction angle",
+    "context": "User: this should just take 5 minutes\nAssistant: [30 minutes later] any luck?\nUser: still 5 more minutes"
+  },
+  {
+    "id": "d009",
+    "situation": "half of me wants to merge it, the other half sees the risks clearly",
+    "gold": "gollum-smeagol",
+    "wrong": "evil-kermit",
+    "should_drop": true,
+    "discrimination": true,
+    "why": "evil-kermit is one-sided temptation (bad self wins); gollum-smeagol is symmetric debate where both sides are equally valid",
+    "acceptable_alternates": [
+      "two-buttons"
+    ],
+    "alternate_why": "frozen between merge and risk is two-buttons territory; gold (gollum-smeagol) is better because both voices are actively argued, not just felt"
+  },
+  {
+    "id": "d010",
+    "situation": "added 12 services to fix what should have been a config value",
+    "gold": "pepe-silvia",
+    "wrong": "that-escalated-quickly",
+    "should_drop": true,
+    "discrimination": true,
+    "why": "that-escalated-quickly requires rapid unexpected growth; pepe-silvia is for self-inflicted complexity the person built themselves"
+  }
+]
