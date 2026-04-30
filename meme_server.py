@@ -11,7 +11,6 @@ import difflib
 import json
 import math
 import os
-import re
 import subprocess
 import threading
 import time
@@ -115,8 +114,7 @@ def _cached_gif(name: str, gif_url: str) -> str:
     """Return path to a locally cached GIF, downloading if needed."""
     parsed = urllib.parse.urlparse(gif_url)
     trusted = parsed.scheme == "https" and any(
-        parsed.netloc == h.lstrip(".") or parsed.netloc.endswith(h)
-        for h in _TRUSTED_GIF_HOSTS
+        parsed.netloc == h.lstrip(".") or parsed.netloc.endswith(h) for h in _TRUSTED_GIF_HOSTS
     )
     if not trusted:
         raise ValueError(f"Refusing to fetch GIF from untrusted host: {parsed.netloc}")
@@ -130,20 +128,6 @@ def _cached_gif(name: str, gif_url: str) -> str:
         f.write(r.read())
     tmp.rename(dest)
     return str(dest)
-
-
-def _chafa_topright(path: str, meme_cols: int, meme_rows: int, terminal_cols: int, start_row: int = 1) -> str:
-    """Render as braille (no color), right-justified and vertically positioned."""
-    result = subprocess.run(
-        [CHAFA, "--animate", "off", "--symbols", "braille", "--colors", "none",
-         f"--size={meme_cols}x{meme_rows}", path],
-        capture_output=True,
-    )
-    raw = result.stdout.decode("utf-8", errors="replace")
-    lines = raw.rstrip("\n").split("\n")
-    actual_width = max((len(line) for line in lines if line), default=meme_cols)
-    start_col = max(1, terminal_cols - actual_width + 1)
-    return "".join(f"\033[{start_row + i};{start_col}H{line}" for i, line in enumerate(lines))
 
 
 _RENDER_DELAY = float(os.environ.get("MEME_DELAY_SECS", "6"))
@@ -168,11 +152,6 @@ def _render_delayed(name: str, gif_path: str) -> None:
         alt = m.get("alt_text", "") if m else ""
         with open("/dev/tty", "w") as tty:
             try:
-                if os.fstat(tty.fileno()).st_uid != os.getuid():
-                    return
-            except OSError:
-                pass
-            try:
                 size = os.get_terminal_size(tty.fileno())
                 cols, rows = size.columns, size.lines
             except OSError:
@@ -187,8 +166,17 @@ def _render_delayed(name: str, gif_path: str) -> None:
                 raw = braille_file.read_text(encoding="utf-8")
             else:
                 result = subprocess.run(
-                    [CHAFA, "--animate", "off", "--symbols", "braille", "--colors", "none",
-                     f"--size={cols // 2}x{rows // 2}", gif_path],
+                    [
+                        CHAFA,
+                        "--animate",
+                        "off",
+                        "--symbols",
+                        "braille",
+                        "--colors",
+                        "none",
+                        f"--size={cols // 2}x{rows // 2}",
+                        gif_path,
+                    ],
                     capture_output=True,
                     timeout=10,
                 )
@@ -197,7 +185,9 @@ def _render_delayed(name: str, gif_path: str) -> None:
             actual_width = max((len(line) for line in lines if line), default=cols // 2)
             start_col = max(1, cols - actual_width + 1)
             start_row = max(1, (rows - len(lines)) // 2)
-            render = "".join(f"\033[{start_row + i};{start_col}H{line}" for i, line in enumerate(lines))
+            render = "".join(
+                f"\033[{start_row + i};{start_col}H{line}" for i, line in enumerate(lines)
+            )
             tty.write(render)
             if alt:
                 label = f"\033[2m[{name}] {alt}\033[0m"

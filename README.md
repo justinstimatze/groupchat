@@ -42,12 +42,12 @@ We address this gap by framing ambient meme deployment as a proactive agent beha
 ### 3.1 Rendering Pipeline
 
 ```
-Claude judges moment → drop_meme(name) → Tenor search scrape → GIF fetch → chafa → /dev/tty (cursor-positioned)
+Claude judges moment → drop_meme(name) → pinned img_url lookup → GIF fetch → chafa → /dev/tty (cursor-positioned)
 ```
 
 The key architectural decision: rendering to `/dev/tty` bypasses stdout entirely, making the output invisible to Claude's own context window. The model dispatches the drop and immediately forgets it happened. The meme renders 6 seconds later in a background thread, timed to appear after Claude has finished its text response — like a colleague who waits for you to finish speaking before dropping the meme. Note: in multi-step agentic tasks longer than 6 seconds, the meme may appear mid-task rather than post-response.
 
-The repository ships no meme images. GIFs are cached locally to `~/.cache/groupchat/memes/` after first render and excluded from version control. The `tenor` field is a search query that stays fresh; Tenor serves the images from their CDN.
+The repository ships no meme images. GIFs are cached locally to `~/.cache/groupchat/memes/` after first render and excluded from version control. Each meme has a pinned `img_url` (primarily `i.kym-cdn.com`, some `media1.tenor.com`) fetched at render time. The `tenor` field is a human-readable search hint for `meme --add`, not used at runtime.
 
 ### 3.2 MCP Tool Design
 
@@ -135,11 +135,11 @@ We report our limitations with the same precision we used to measure them, which
 
 ## 7. Future Work
 
-- **Vitality decay**: Apply `vitality_date` to compute staleness penalty at selection time. A meme from 2016 needs a 3σ fit.
-- **Automatic database growth**: `meme --add <url>` already exists with LLM-assisted metadata drafting. The remaining step is an unsupervised harvest loop with human spot-check.
-- **Context-sensitive selection**: The current system sends the full roster to a fresh prompt. Passing recent conversational turns to the selection model is the most direct path to the Sonnet regression going away.
-- **Platform dialect awareness**: The `native_platform` field is annotated but not used in selection. Reddit-native memes land differently in a TikTok-dialect conversation.
 - **macOS compatibility audit**: `/dev/tty` semantics, `os.get_terminal_size`, chafa via `brew install chafa`. Best-effort; untested without Mac CI.
+- ~~**Vitality decay**~~: `vitality_date` drives `[dated:YYYY]` and `[retro:YYYY]` markers in the selection roster. Dated memes require a 3σ fit; retro memes carry an "oldness is the joke" qualifier.
+- ~~**Context-sensitive selection**~~: The eval harness accepts an optional `context` field per case, injected as a conversational preamble before the situation description.
+- ~~**Platform dialect awareness**~~: `native_platform` is annotated for all 66 memes, surfaced as a `plat` column in the selection roster, with per-platform guidance in CLAUDE.md (rd/tw/tt/tm/yt/dc).
+- ~~**Automatic database growth**~~: `meme --harvest [--source kym]` fetches trending memes from Know Your Meme, diffs against the existing DB, and presents an interactive add/skip queue.
 
 ---
 
@@ -154,7 +154,7 @@ pip install mcp  # or: uv pip install mcp
 
 `--install` registers the MCP server globally (`claude mcp add meme -s user`) and appends the meme guidance block to `~/.claude/CLAUDE.md` so the roster is in context for every project. Idempotent — safe to re-run after updates. Restart Claude Code to activate.
 
-**Licensing.** No meme images are committed to the repository. `memes.json` contains only metadata and image URLs; images are fetched at render time from Tenor's CDN (for `tenor`-field entries) or pinned `img_url` sources (primarily `i.kym-cdn.com`), and cached locally. The pre-baked `.braille` files in `frames/` are low-resolution derivative works; their fair use status rests primarily on the transformative-format and non-commercial factors. We have excluded memes based on photographs with active commercial licensing management (e.g., Disaster Girl) to reduce exposure. Source images are gitignored. **Tuning.** `MEME_COOLDOWN_LAMBDA` controls drop frequency (default: 1.5). Higher = decays faster = more tolerant of back-to-back drops. Set to 99 to disable cooldown entirely during dev. `MEME_NO_BRAILLE=1` switches to plain-text alt descriptions (screen reader / no chafa).
+**Licensing.** No meme images are committed to the repository. `memes.json` contains only metadata and pinned `img_url` sources (primarily `i.kym-cdn.com`, some `media1.tenor.com`); images are fetched at render time and cached locally. The pre-baked `.braille` files in `frames/` are low-resolution derivative works; their fair use status rests primarily on the transformative-format and non-commercial factors. We have excluded memes based on photographs with active commercial licensing management (e.g., Disaster Girl) to reduce exposure. Source images are gitignored. **Tuning.** `MEME_COOLDOWN_LAMBDA` controls drop frequency (default: 1.5). Higher = decays faster = more tolerant of back-to-back drops. Set to 99 to disable cooldown entirely during dev. `MEME_NO_BRAILLE=1` switches to plain-text alt descriptions (screen reader / no chafa).
 
 The system requires `chafa` (`apt install chafa` / `brew install chafa`) and an Anthropic API key is needed only for `meme --add`. The MCP server has no other dependencies beyond `mcp>=1.26.0`.
 

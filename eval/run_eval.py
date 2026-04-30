@@ -10,6 +10,7 @@ Three modes:
 Requires ANTHROPIC_API_KEY for model mode.
 """
 
+import datetime as _dt
 import hashlib
 import json
 import re
@@ -79,15 +80,82 @@ def _api_call(client, model, prompt, max_tokens=20):
 
 _STOPWORDS = frozenset(
     {
-        "a", "an", "the", "and", "or", "but", "is", "are", "was", "were",
-        "be", "been", "being", "have", "has", "had", "do", "does", "did",
-        "will", "would", "could", "should", "may", "might", "shall",
-        "to", "of", "in", "for", "on", "with", "at", "by", "from",
-        "it", "its", "this", "that", "these", "those", "they", "them",
-        "not", "no", "so", "if", "when", "where", "which", "who", "what",
-        "how", "than", "then", "as", "up", "out", "about", "into", "just",
-        "more", "also", "very", "too", "can", "i", "you", "we", "he", "she",
-        "one", "two", "all", "get", "got",
+        "a",
+        "an",
+        "the",
+        "and",
+        "or",
+        "but",
+        "is",
+        "are",
+        "was",
+        "were",
+        "be",
+        "been",
+        "being",
+        "have",
+        "has",
+        "had",
+        "do",
+        "does",
+        "did",
+        "will",
+        "would",
+        "could",
+        "should",
+        "may",
+        "might",
+        "shall",
+        "to",
+        "of",
+        "in",
+        "for",
+        "on",
+        "with",
+        "at",
+        "by",
+        "from",
+        "it",
+        "its",
+        "this",
+        "that",
+        "these",
+        "those",
+        "they",
+        "them",
+        "not",
+        "no",
+        "so",
+        "if",
+        "when",
+        "where",
+        "which",
+        "who",
+        "what",
+        "how",
+        "than",
+        "then",
+        "as",
+        "up",
+        "out",
+        "about",
+        "into",
+        "just",
+        "more",
+        "also",
+        "very",
+        "too",
+        "can",
+        "i",
+        "you",
+        "we",
+        "he",
+        "she",
+        "one",
+        "two",
+        "all",
+        "get",
+        "got",
     }
 )
 
@@ -122,15 +190,17 @@ def run_baseline():
         if e["gold"] in top3:
             hits3 += 1
         else:
-            failures.append({"id": e["id"], "gold": e["gold"], "got": top3, "situation": e["situation"][:60]})
+            failures.append(
+                {"id": e["id"], "gold": e["gold"], "got": top3, "situation": e["situation"][:60]}
+            )
 
     n = len(evals)
     if n == 0:
         print("Baseline keyword search — no drop cases found")
         return
     print(f"Baseline keyword search — {n} drop cases")
-    print(f"  P@1: {hits1}/{n} = {hits1/n:.0%}")
-    print(f"  P@3: {hits3}/{n} = {hits3/n:.0%}")
+    print(f"  P@1: {hits1}/{n} = {hits1 / n:.0%}")
+    print(f"  P@3: {hits3}/{n} = {hits3 / n:.0%}")
     if failures:
         print(f"\n  Misses ({len(failures)}):")
         for f in failures:
@@ -141,8 +211,6 @@ def run_baseline():
 # ---------------------------------------------------------------------------
 # Model-native selection via Anthropic API
 # ---------------------------------------------------------------------------
-
-import datetime as _dt
 
 ROSTER_PROMPT = """You are a meme selection assistant. Given a situation description, pick the
 most appropriate meme from the roster below. Reply with ONLY the meme name, nothing else.
@@ -164,7 +232,14 @@ Roster (name | td=text_dependent | mech | plat | key — unique template signatu
 {context_block}Situation: {situation}"""
 
 
-_PLAT_ABBR = {"reddit": "rd", "twitter": "tw", "tiktok": "tt", "tumblr": "tm", "youtube": "yt", "discord": "dc"}
+_PLAT_ABBR = {
+    "reddit": "rd",
+    "twitter": "tw",
+    "tiktok": "tt",
+    "tumblr": "tm",
+    "youtube": "yt",
+    "discord": "dc",
+}
 
 
 def build_roster(memes):
@@ -183,7 +258,9 @@ def build_roster(memes):
             key = f"{key}  [dated:{vdate} {years_old}y]"
         elif vitality == "retro" and vdate:
             years_old = current_year - int(str(vdate)[:4])
-            key = f"{key}  [retro:{vdate} {years_old}y — oldness is the joke; needs ironic register]"
+            key = (
+                f"{key}  [retro:{vdate} {years_old}y — oldness is the joke; needs ironic register]"
+            )
         lines.append(f"{m['name']:32s} {td}  {mechs:4s}  {plat}  {key}")
     return "\n".join(lines)
 
@@ -205,7 +282,9 @@ def run_model(model="claude-haiku-4-5-20251001"):
     for e in evals:
         ctx = e.get("context", "")
         context_block = f"Recent conversation context:\n{ctx}\n\n" if ctx else ""
-        prompt = ROSTER_PROMPT.format(roster=roster, situation=e["situation"], context_block=context_block)
+        prompt = ROSTER_PROMPT.format(
+            roster=roster, situation=e["situation"], context_block=context_block
+        )
         raw = _api_call(client, model, prompt)
         pick = raw.lower().replace(" ", "-")
         correct = pick == e["gold"]
@@ -215,7 +294,9 @@ def run_model(model="claude-haiku-4-5-20251001"):
         if acceptable:
             hits1_adj += 1
         else:
-            failures.append({"id": e["id"], "gold": e["gold"], "got": pick, "situation": e["situation"][:60]})
+            failures.append(
+                {"id": e["id"], "gold": e["gold"], "got": pick, "situation": e["situation"][:60]}
+            )
 
     n = len(evals)
     if n == 0:
@@ -223,8 +304,8 @@ def run_model(model="claude-haiku-4-5-20251001"):
         return
     n_amb = sum(1 for e in evals if e.get("acceptable_alternates"))
     print(f"Model-native selection ({model}) — {n} drop cases ({n_amb} have acceptable alternates)")
-    print(f"  P@1 strict:   {hits1}/{n} = {hits1/n:.0%}")
-    print(f"  P@1 adjusted: {hits1_adj}/{n} = {hits1_adj/n:.0%}  (counts acceptable alternates)")
+    print(f"  P@1 strict:   {hits1}/{n} = {hits1 / n:.0%}")
+    print(f"  P@1 adjusted: {hits1_adj}/{n} = {hits1_adj / n:.0%}  (counts acceptable alternates)")
     if failures:
         print(f"\n  Misses ({len(failures)}):")
         for f in failures:
@@ -253,10 +334,14 @@ def run_anti(model="claude-haiku-4-5-20251001"):
     for e in evals:
         ctx = e.get("context", "")
         context_block = f"Recent conversation context:\n{ctx}\n\n" if ctx else ""
-        prompt = ROSTER_PROMPT.format(roster=roster, situation=e["situation"], context_block=context_block)
+        prompt = ROSTER_PROMPT.format(
+            roster=roster, situation=e["situation"], context_block=context_block
+        )
         pick = _api_call(client, model, prompt)
         if pick.upper() != "NONE":
-            false_positives.append({"id": e["id"], "picked": pick, "situation": e["situation"][:60]})
+            false_positives.append(
+                {"id": e["id"], "picked": pick, "situation": e["situation"][:60]}
+            )
 
     n = len(evals)
     if n == 0:
@@ -264,7 +349,7 @@ def run_anti(model="claude-haiku-4-5-20251001"):
         return
     fp = len(false_positives)
     print(f"Anti-drop test [{model}] — {n} no-drop cases")
-    print(f"  False positive rate: {fp}/{n} = {fp/n:.0%}")
+    print(f"  False positive rate: {fp}/{n} = {fp / n:.0%}")
     if false_positives:
         print(f"\n  False positives ({fp}):")
         for f in false_positives:
@@ -307,7 +392,9 @@ Candidate 2: {b}"""
     correct = 0
     for e in evals:
         # Stable randomisation by case ID — prevents gold from always being candidate A
-        gold_first = int(hashlib.md5(e["id"].encode(), usedforsecurity=False).hexdigest(), 16) % 2 == 0
+        gold_first = (
+            int(hashlib.md5(e["id"].encode(), usedforsecurity=False).hexdigest(), 16) % 2 == 0
+        )
         cand_a = e["gold"] if gold_first else e["wrong"]
         cand_b = e["wrong"] if gold_first else e["gold"]
         prompt = disc_prompt.format(
@@ -328,7 +415,7 @@ Candidate 2: {b}"""
         else:
             print(f"  [{e['id']}] chose {pick!r} over {e['gold']!r} — {e['why'][:60]}")
 
-    print(f"Discrimination test [{model}] — {n} pairs: {correct}/{n} = {correct/n:.0%}")
+    print(f"Discrimination test [{model}] — {n} pairs: {correct}/{n} = {correct / n:.0%}")
 
 
 # ---------------------------------------------------------------------------

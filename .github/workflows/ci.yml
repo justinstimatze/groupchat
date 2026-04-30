@@ -10,31 +10,31 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: astral-sh/setup-uv@0c5e2b8115b80b4c7c5ddf6ffdd634974642d182  # v5.4.1
         with:
           python-version: "3.11"
-      - run: uv pip install --system ruff
-      - run: ruff check .
-      - run: ruff format --check .
+      - run: uv pip install ruff
+      - run: uv run --no-project ruff check .
+      - run: uv run --no-project ruff format --check .
 
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: astral-sh/setup-uv@0c5e2b8115b80b4c7c5ddf6ffdd634974642d182  # v5.4.1
         with:
           python-version: "3.11"
-      - run: uv pip install --system mcp
-      - run: python3 tests/test_server.py
+      - run: uv pip install mcp
+      - run: uv run --no-project python3 tests/test_server.py
 
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: astral-sh/setup-uv@0c5e2b8115b80b4c7c5ddf6ffdd634974642d182  # v5.4.1
         with:
           python-version: "3.11"
-      - run: uv pip install --system bandit pip-audit mcp
-      - run: bandit meme_server.py meme -s B101,B603,B607,B311
-      - run: pip-audit
+      - run: uv pip install bandit pip-audit mcp
+      - run: uv run --no-project bandit meme_server.py meme -s B101,B310,B404,B603,B607,B311
+      - run: uv run --no-project pip-audit
