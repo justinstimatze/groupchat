@@ -2,6 +2,8 @@
 
 **Abstract.** We present *groupchat*, an ambient meme deployment system that enables a large language model to drop contextually appropriate reaction memes — rendered as braille ASCII art — into a developer terminal *without being asked*. Prior art (Dank Memer, GIF-reply bots, custom slash commands) treats selection as a retrieval problem and requires a user trigger. To our knowledge, this is the first system to formalize proactive meme deployment as an explicit behavioral policy — specifying structured `deploy_when` / `too_much_if` conditions, humor-theoretic mechanism annotations, and adaptive cooldown state — rather than treating selection as a pure ranking problem with no when-to-fire gate. We describe the annotation schema, rendering pipeline, adaptive cooldown mechanism, and a 53-situation evaluation benchmark. Model-native selection (claude-haiku-4-5) achieves 70% P@1 strict / 78% adjusted on a curated drop corpus, 0% false positive rate on anti-drop cases, and 90% accuracy on forced-choice discrimination pairs (prior eval configuration) — compared to 29% P@1 for a keyword baseline. We release the full database of 66 annotated memes, the evaluation suite, and the MCP server implementation.
 
+![demo](assets/demo.png)
+
 ---
 
 ## 1. Introduction

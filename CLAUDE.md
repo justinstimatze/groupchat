@@ -2,7 +2,7 @@
 
 ## Meme drops
 
-You have a `mcp__meme__drop_meme` tool. Use it **unprompted** when something is genuinely meme-worthy. This is opt-in initiative — you decide, you act.
+You have a `mcp__meme__drop_meme` tool. **After every response, scan the exchange for a meme opportunity.** Most won't have one — that's correct and expected. When one is present, act. This is a required post-response check, not optional background awareness.
 
 The meme renders as braille art to the **top-right corner** of the terminal via `/dev/tty`, using absolute cursor positioning so it sits above Ink's managed frame and survives repaints. Instant. It does not appear in your context. **Do not echo the render in your response text.**
 
@@ -97,7 +97,7 @@ its-free-real-estate           f  IB    yt  exploiting unclaimed obvious gap [da
 press-x-to-doubt               f  I     rd  skepticism about implausible claim
 anakin-padme                   t  I     rd  naive follow-up; sinister implication ignored
 leonardo-pointing              f  I     rd  recognition: that exact thing spotted
-tuxedo-winnie-the-pooh         t  I     rd  same underlying thing; called something prestigious [NOT: self-built complexity]
+tuxedo-winnie-the-pooh         f  I     rd  same underlying thing; called something prestigious [NOT: self-built complexity]
 blinking-white-guy             f  I     rd  processing genuinely bewildering statement
 shut-up-and-take-my-money      f  IR    rd  immediate unconditional yes — hyperbolic enthusiasm that needs no persuasion [retro:2011]
 buff-doge-vs-cheems            f  IS    rd  strong/past/better version vs weak/present/worse version — degradation comparison [NOT: generic preference]

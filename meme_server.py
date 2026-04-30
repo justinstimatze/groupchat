@@ -25,8 +25,28 @@ FRAMES_DIR = Path(__file__).parent / "frames"
 CHAFA = "chafa"
 GIF_CACHE = Path.home() / ".cache" / "groupchat" / "memes"
 DROPS_FILE = Path.home() / ".cache" / "groupchat" / "drops.json"
+LOG_FILE = Path.home() / ".cache" / "groupchat" / "meme.log"
 
 mcp = FastMCP("meme")
+
+
+_LOG_MAX_BYTES = 256 * 1024  # 256 KB
+
+
+def _log(msg: str) -> None:
+    LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+    ts = time.strftime("%Y-%m-%d %H:%M:%S")
+    line = f"[{ts}] {msg}\n"
+    try:
+        if LOG_FILE.exists() and LOG_FILE.stat().st_size > _LOG_MAX_BYTES:
+            # Keep the last half on overflow
+            text = LOG_FILE.read_text(errors="replace")
+            LOG_FILE.write_text(text[len(text) // 2 :])
+        with open(LOG_FILE, "a") as f:
+            f.write(line)
+    except OSError:
+        pass
+
 
 # in-process DB cache — invalidated only on server restart (which meme --add triggers)
 _db_cache: list | None = None
@@ -144,8 +164,10 @@ def _render_delayed(name: str, gif_path: str) -> None:
     Screen-reader mode (MEME_NO_BRAILLE=1 or AT_SPI_BUS_ADDRESS set): writes alt_text
     as plain text instead of braille art."""
     if not os.path.exists("/dev/tty"):
+        _log(f"render skip [{name}]: no /dev/tty")
         return
     time.sleep(_RENDER_DELAY)
+    _log(f"render start [{name}]")
     try:
         memes = _load_db()
         m = next((x for x in memes if x["name"] == name), None)
@@ -194,7 +216,11 @@ def _render_delayed(name: str, gif_path: str) -> None:
                 tty.write(f"\033[{rows - 1};1H{label}")
             tty.write(f"\033[{rows};1H")
             tty.flush()
-    except OSError:
+        _log(
+            f"render ok [{name}] cols={cols} rows={rows} braille={'yes' if (FRAMES_DIR / f'{name}.braille').exists() else 'no'}"
+        )
+    except OSError as e:
+        _log(f"render fail [{name}]: {e}")
         pass
 
 
@@ -225,14 +251,18 @@ def drop_meme(name: str) -> str:
     memes = _load_db()
     m = _find(memes, name)
     if not m:
+        _log(f"drop [{name}]: not found")
         return f"'{name}' not found — call meme_info to check spelling or list_memes to browse"
     cooldown = _cooldown_state()
+    _log(f"drop [{m['name']}] cooldown={cooldown['state']} threshold={cooldown['threshold']:.2f}")
     img_url = _resolve_img_url(m)
     if not img_url:
+        _log(f"drop [{m['name']}]: no img_url")
         return f"could not fetch '{name}' from Tenor"
     try:
         path = _cached_gif(name, img_url)
     except Exception as e:
+        _log(f"drop [{m['name']}]: fetch failed: {e}")
         return f"fetch failed: {e}"
     _record_drop()
     threading.Thread(target=_render_delayed, args=(m["name"], path), daemon=True).start()

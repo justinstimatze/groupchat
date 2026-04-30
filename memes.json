@@ -593,7 +593,7 @@
     ],
     "too_much_if": "things that are actually meaningfully different in the elevated form",
     "vitality": "evergreen",
-    "text_dependent": true,
+    "text_dependent": false,
     "mechanism": [
       "incongruity"
     ],
