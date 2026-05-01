@@ -17,7 +17,7 @@ We address this gap by framing ambient meme deployment as a proactive agent beha
 **Contributions:**
 
 1. A structured annotation schema (`deploy_when`, `too_much_if`, `mechanism`, `key`, `affect`, `irony_modes`) for 66 reaction memes calibrated for terminal deployment
-2. An adaptive cooldown mechanism θ(t) = e^{−λt} that persists drop history to disk and self-moderates deployment frequency
+2. An adaptive cooldown mechanism θ(t) = e^(−λt) that persists drop history to disk and self-moderates deployment frequency
 3. A 53-situation evaluation benchmark with drop, anti-drop, and discrimination splits
 4. An MCP server implementation exposing `drop_meme`, `meme_info`, and `list_memes` tools to Claude Code
 5. Empirical evidence that model-native selection over an annotated roster outperforms keyword retrieval by 41 P@1 percentage points
@@ -138,10 +138,6 @@ We report our limitations with the same precision we used to measure them, which
 ## 7. Future Work
 
 - **macOS compatibility audit**: `/dev/tty` semantics, `os.get_terminal_size`, chafa via `brew install chafa`. Best-effort; untested without Mac CI.
-- ~~**Vitality decay**~~: `vitality_date` drives `[dated:YYYY]` and `[retro:YYYY]` markers in the selection roster. Dated memes require a 3σ fit; retro memes carry an "oldness is the joke" qualifier.
-- ~~**Context-sensitive selection**~~: The eval harness accepts an optional `context` field per case, injected as a conversational preamble before the situation description.
-- ~~**Platform dialect awareness**~~: `native_platform` is annotated for all 66 memes, surfaced as a `plat` column in the selection roster, with per-platform guidance in CLAUDE.md (rd/tw/tt/tm/yt/dc).
-- ~~**Automatic database growth**~~: `meme --harvest [--source kym]` fetches trending memes from Know Your Meme, diffs against the existing DB, and presents an interactive add/skip queue.
 
 ---
 
@@ -174,6 +170,8 @@ ANTHROPIC_API_KEY=sk-... python3 run_eval.py all
 ```
 
 Results are cached to `~/.cache/groupchat/eval/` (keyed by sha256(model|prompt)). Repeat runs are free.
+
+Drops are logged to `~/.cache/groupchat/meme.log` (256 KB ring) — useful for diagnosing why a drop didn't render (model never called the tool vs. tty unavailable vs. fetch failed).
 
 ---
 
