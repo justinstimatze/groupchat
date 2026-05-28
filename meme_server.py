@@ -12,6 +12,7 @@ import json
 import math
 import os
 import subprocess
+import sys
 import threading
 import time
 import urllib.parse
@@ -29,6 +30,8 @@ LOG_FILE = Path.home() / ".cache" / "groupchat" / "meme.log"
 
 mcp = FastMCP("meme")
 
+# Linux prctl option: deliver a signal to this process when its parent dies.
+_PR_SET_PDEATHSIG = 1
 
 _LOG_MAX_BYTES = 256 * 1024  # 256 KB
 
@@ -224,6 +227,37 @@ def _render_delayed(name: str, gif_path: str) -> None:
         pass
 
 
+def _install_parent_death_signal() -> bool:
+    """Ask the kernel to SIGTERM us when our immediate parent dies (Linux only).
+
+    Claude Code launches this via `uv run`, so our parent is the `uv` process.
+    If `uv` is killed while the session's stdin pipe stays open, the normal
+    EOF-on-stdin shutdown never arrives and we linger as an orphan. PR_SET_PDEATHSIG
+    closes that gap: when `uv` dies we get SIGTERM and exit. The common path
+    (Claude Code closing stdin) is already handled by mcp.run() returning on EOF.
+
+    No-op on non-Linux (prctl unavailable); returns False so callers can tell.
+    """
+    if not sys.platform.startswith("linux"):
+        return False
+    try:
+        import ctypes
+
+        parent = os.getppid()
+        libc = ctypes.CDLL("libc.so.6", use_errno=True)
+        # prctl(PR_SET_PDEATHSIG=1, signal=SIGTERM=15)
+        if libc.prctl(_PR_SET_PDEATHSIG, 15, 0, 0, 0) != 0:
+            return False
+        # Race guard: if the parent died between getppid() and prctl, the signal
+        # was already missed. Reparenting may land on init OR a subreaper
+        # (systemd --user), so compare against the original pid, not just 1.
+        if os.getppid() != parent:
+            os._exit(0)
+        return True
+    except (OSError, AttributeError, ValueError):
+        return False
+
+
 def _find(memes, name):
     for m in memes:
         if m["name"] == name:
@@ -321,4 +355,5 @@ def list_memes() -> str:
 
 
 if __name__ == "__main__":
+    _install_parent_death_signal()
     mcp.run()

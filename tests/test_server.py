@@ -198,6 +198,46 @@ def test_find_exact_over_fuzzy():
     print("  PASS  _find exact match 'doge' wins over fuzzy candidates")
 
 
+def test_parent_death_signal_noop_off_linux():
+    """On non-Linux, the parent-death guard is a no-op and returns False."""
+    import sys as _sys
+
+    orig = meme_server.sys.platform
+    try:
+        meme_server.sys.platform = "darwin"
+        assert meme_server._install_parent_death_signal() is False
+    finally:
+        meme_server.sys.platform = orig
+    _ = _sys  # keep import used
+    print("  PASS  parent-death guard is a no-op off Linux")
+
+
+def test_parent_death_signal_calls_prctl_on_linux():
+    """On Linux, it must call prctl(PR_SET_PDEATHSIG=1, SIGTERM=15) and report success."""
+    from unittest.mock import MagicMock, patch
+
+    calls = []
+
+    fake_libc = MagicMock()
+
+    def _prctl(opt, sig, *rest):
+        calls.append((opt, sig))
+        return 0  # success
+
+    fake_libc.prctl = _prctl
+
+    with (
+        patch.object(meme_server.sys, "platform", "linux"),
+        patch("ctypes.CDLL", return_value=fake_libc),
+        patch.object(meme_server.os, "getppid", return_value=4242),  # live parent
+    ):
+        ok = meme_server._install_parent_death_signal()
+
+    assert ok is True, "should return True on successful prctl"
+    assert calls == [(1, 15)], f"expected prctl(PR_SET_PDEATHSIG=1, SIGTERM=15), got {calls}"
+    print("  PASS  parent-death guard calls prctl(PR_SET_PDEATHSIG, SIGTERM) on Linux")
+
+
 if __name__ == "__main__":
     tests = [
         test_cooldown_clear_when_no_drops,
@@ -218,6 +258,8 @@ if __name__ == "__main__":
         test_cached_gif_accepts_trusted_hosts,
         test_find_returns_none_for_unknown,
         test_find_exact_over_fuzzy,
+        test_parent_death_signal_noop_off_linux,
+        test_parent_death_signal_calls_prctl_on_linux,
     ]
 
     passed = failed = 0
