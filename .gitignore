@@ -4,6 +4,7 @@ __pycache__/
 Pasted image.png
 .env
 .defn/
+uv.lock
 
 # Source images are copyright — only braille art ships in the repo.
 # Run `meme --bake-all` to regenerate from img_url.
