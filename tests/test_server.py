@@ -141,13 +141,22 @@ def test_meme_info_includes_alt_text():
     print("  PASS  meme_info includes alt_text")
 
 
-def test_list_memes_includes_mechanism():
-    result = json.loads(meme_server.list_memes())
-    required = {"name", "deploy_when", "text_dependent", "mechanism", "native_platform", "vitality"}
-    for m in result:
-        missing = required - m.keys()
-        assert not missing, f"{m.get('name', '?')} missing fields in list_memes: {missing}"
-    print(f"  PASS  list_memes has all required fields for all {len(result)} memes")
+def test_list_memes_carries_the_whole_roster():
+    """list_memes is the roster's only home now that CLAUDE.md no longer carries
+    it, so every meme must appear with its key, and the legend and worked
+    examples must come along — that guidance lives nowhere else."""
+    result = meme_server.list_memes()
+    memes = meme_server._load_db()
+    assert f"{len(memes)} memes." in result, "roster is missing its count header"
+    for m in memes:
+        assert m["name"] in result, f"{m['name']} missing from the roster table"
+        key = m.get("key", "")
+        if key:
+            assert key[:40] in result, f"{m['name']} listed without its key"
+    for legend in ("incongruity", "benign_violation", "superiority", "relief"):
+        assert legend in result, f"mechanism legend missing {legend}"
+    assert "Non-drops" in result, "worked examples missing from list_memes"
+    print(f"  PASS  list_memes carries all {len(memes)} memes, the legend, and the examples")
 
 
 def test_cached_gif_rejects_bad_host():
@@ -253,7 +262,7 @@ if __name__ == "__main__":
         test_all_memes_have_mechanism,
         test_all_memes_have_alt_text,
         test_meme_info_includes_alt_text,
-        test_list_memes_includes_mechanism,
+        test_list_memes_carries_the_whole_roster,
         test_cached_gif_rejects_bad_host,
         test_cached_gif_accepts_trusted_hosts,
         test_find_returns_none_for_unknown,

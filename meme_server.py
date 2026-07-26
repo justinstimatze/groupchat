@@ -273,14 +273,100 @@ def _find(memes, name):
 # ---------------------------------------------------------------------------
 
 
+_MECH_ABBR = {"incongruity": "I", "benign_violation": "B", "superiority": "S", "relief": "R"}
+_PLAT_ABBR = {
+    "reddit": "rd",
+    "twitter": "tw",
+    "tiktok": "tt",
+    "tumblr": "tm",
+    "youtube": "yt",
+    "discord": "dc",
+}
+
+
+def _roster_table(memes: list) -> str:
+    """Compact one-line-per-meme roster. Lives here rather than in CLAUDE.md so
+    it costs tokens only when a caller actually needs to browse."""
+    lines = []
+    for m in memes:
+        td = "t" if m["text_dependent"] else "f"
+        mechs = "".join(_MECH_ABBR.get(x, "?") for x in m.get("mechanism", []))
+        plat = _PLAT_ABBR.get(m.get("native_platform", ""), "??")
+        key = m.get("key", "")
+        vitality = m.get("vitality", "evergreen")
+        vdate = m.get("vitality_date", "")
+        if vitality == "somewhat dated" and vdate:
+            key = f"{key} [dated:{vdate}]"
+        elif vitality == "retro" and vdate:
+            key = f"{key} [retro:{vdate}]"
+        lines.append(f"{m['name']:<30} {td}  {mechs:<4}  {plat}  {key}")
+    return "\n".join(lines)
+
+
+_ROSTER_LEGEND = """Columns: name | td (text-dependent t/f) | mech | plat | key
+
+The key is the distinguishing fingerprint. When two memes feel similar, the key
+decides. spark-joy and spark-joy-not are two crops of one template.
+
+mech: I incongruity (violated expectation, most memes) · B benign_violation
+(norm broken but safe, adds warmth over pure mockery) · S superiority (laughing
+at someone, including self) · R relief (cathartic release, fits wins after
+struggle). Prefer I+B for self-directed drops. S-heavy templates (grumpy-cat,
+picard-facepalm) need the user clearly in on the joke. When the S target is the
+user's own mistake the bar is much higher — surprised-pikachu in particular
+reads as "you should have seen this coming, dummy."
+
+plat is origin dialect: rd Reddit (broad, reads naturally in dev contexts) ·
+tw Twitter (punchy, viral-format) · tt TikTok (Gen Z register) · dc Discord
+(server-culture insular; niche fits that feel cringe on Reddit can land here) ·
+tm Tumblr · yt YouTube.
+
+[dated:YYYY] needs a 3-sigma fit — the template must be unmistakably precise.
+[retro:YYYY] has crossed back through the cringe valley, so the oldness is part
+of the joke; deployable when ironic meta-awareness is readable, too much if the
+nostalgia register doesn't land."""
+
+_WORKED_EXAMPLES = """Drops that work, and why the reason matters more than the match:
+
+  CI green and tests pass, then prod breaks -> this-is-fine
+    active performance of normalcy amid disaster, not merely "bad thing happened"
+  three hours on a regex that now works -> success-kid
+    relief from disproportionate struggle; small victory inflated, not a big win
+  "microservices" turns out to be 50 cron jobs -> tuxedo-winnie-the-pooh
+    identical thing rebranded in an elevated register
+  I make an opinionated call the user might push back on -> deal-with-it
+    requires the tension of potential objection to land
+
+Non-drops, which are the majority:
+
+  "fix this bug" -> nothing. Task request, no situational charge.
+  a PR rejected with substantive feedback -> nothing. Wrong register, don't pile on.
+  "this approach seems slow" -> nothing. No clear template, could read as dismissive."""
+
+
 @mcp.tool()
 def drop_meme(name: str) -> str:
     """
-    Render a meme GIF to the user's terminal after a short delay (so it
-    appears after Claude finishes responding, not during).
-    Call this unprompted when something is genuinely meme-worthy.
-    Use list_memes first if you need to check what's available.
-    Returns immediately; rendering happens ~6s later via background thread.
+    Render a meme to the user's terminal as braille art in the top-right corner,
+    after a short delay so it lands once Claude finishes responding. It does not
+    appear in Claude's context, and the render must not be echoed in response text.
+    Returns immediately; rendering happens ~6s later on a background thread.
+
+    Returns cooldown state: `tight` means a drop landed recently and the bar is
+    higher, `moderate` still passes a good fit, no message means clear.
+
+    Deploy when the situation fits a known template with high confidence rather
+    than loose resemblance, the ironic register matches (a dark template in a
+    warm moment is worse than nothing), and the conversation has enough rapport
+    to absorb a non-sequitur.
+
+    Do not deploy when uncertain — a wrong meme is worse than none — nor when the
+    user is frustrated, rushed, or in a high-stakes moment, nor on a routine task
+    question with no situational charge, nor when the template is text_dependent
+    (text is unreadable at terminal resolution).
+
+    Call meme_info(name) first if unsure about a specific template's edge cases,
+    or list_memes() to browse the roster.
     """
     memes = _load_db()
     m = _find(memes, name)
@@ -336,22 +422,18 @@ def meme_info(name: str) -> str:
 
 @mcp.tool()
 def list_memes() -> str:
-    """Returns name, deploy_when, text_dependent, mechanism, native_platform, and vitality for all memes (~3k tokens).
-    Last resort only — the meme roster is already in CLAUDE.md. Use meme_info(name) for
-    targeted lookup of a single meme's edge-case metadata."""
+    """The full roster: every meme as one line of name, text-dependence, mechanism,
+    origin platform, and the key that distinguishes it from its neighbours — plus
+    how to read those columns and worked examples of drops that land and drops
+    that don't. ~2k tokens.
+
+    Call this when you can't place a name, or when calibrating what counts as a
+    precise fit. Use meme_info(name) instead for one template's edge cases."""
     memes = _load_db()
-    rows = [
-        {
-            "name": m["name"],
-            "deploy_when": m["deploy_when"],
-            "text_dependent": m["text_dependent"],
-            "mechanism": m.get("mechanism", []),
-            "native_platform": m.get("native_platform", ""),
-            "vitality": m.get("vitality", "evergreen"),
-        }
-        for m in memes
-    ]
-    return json.dumps(rows, indent=2)
+    return (
+        f"{len(memes)} memes.\n\n{_ROSTER_LEGEND}\n\n"
+        f"```\n{_roster_table(memes)}\n```\n\n{_WORKED_EXAMPLES}"
+    )
 
 
 if __name__ == "__main__":

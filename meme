@@ -4,7 +4,6 @@ meme <name>                    — fetch and render a meme from the database
 meme --list                    — show available memes
 meme --add <url>               — add a meme from a KYM/Tenor URL (interactive)
 meme --harvest [--source kym]  — interactive queue of trending memes not yet in DB
-meme --regen                   — regenerate the roster block in CLAUDE.md from memes.json
 meme --random                  — render a random meme (for testing)
 meme --test <name>             — render to stdout (no /dev/tty required)
 meme --preview <name>          — download image and open in system viewer
@@ -484,7 +483,6 @@ def cmd_add(memes, url):
     memes.append(entry)
     save_db(memes)
     print(f"[meme] added '{name}'")
-    cmd_regen()
 
     print("Test render? [Y/n]: ", end="", flush=True)
     if sys.stdin.readline().strip().lower() != "n":
@@ -657,77 +655,8 @@ def cmd_bake_all(memes, cols=80, rows=20, force=False):
     print(f"\nbaked {done}, skipped {skipped} (already done), failed {failed}")
 
 
-_ROSTER_MARKER_BEGIN = "<!-- BEGIN meme-roster-generated -->"
-_ROSTER_MARKER_END = "<!-- END meme-roster-generated -->"
-
 _INSTALL_MARKER_BEGIN = "<!-- BEGIN meme-server-guidance -->"
 _INSTALL_MARKER_END = "<!-- END meme-server-guidance -->"
-
-
-def _build_roster_md(memes):
-    """Generate the roster markdown block from memes.json (for meme --regen)."""
-    mech_abbr = {"incongruity": "I", "benign_violation": "B", "superiority": "S", "relief": "R"}
-    plat_abbr = {
-        "reddit": "rd",
-        "twitter": "tw",
-        "tiktok": "tt",
-        "tumblr": "tm",
-        "youtube": "yt",
-        "discord": "dc",
-    }
-    lines = []
-    for m in memes:
-        td = "t" if m["text_dependent"] else "f"
-        mechs = "".join(mech_abbr.get(x, "?") for x in m.get("mechanism", []))
-        plat = plat_abbr.get(m.get("native_platform", ""), "??")
-        key = m.get("key", "")
-        vitality = m.get("vitality", "evergreen")
-        vdate = m.get("vitality_date", "")
-        if vitality == "somewhat dated" and vdate:
-            key = f"{key} [dated:{vdate}]"
-        elif vitality == "retro" and vdate:
-            key = f"{key} [retro:{vdate}]"
-        lines.append(f"{m['name']:<30} {td}  {mechs:<4}  {plat}  {key}")
-    n = len(memes)
-    header = (
-        f"All {n} available memes. "
-        f"(spark-joy and spark-joy-not are two crops of the same template) "
-        f"Columns: `name | td (text-dependent: t/f) | mech | plat (rd=Reddit tw=Twitter tt=TikTok tm=Tumblr yt=YouTube) | key`\n\n"
-        f"Dated memes (`[dated:YYYY]`) need a 3σ fit — the template must be unmistakably precise. "
-        f"Retro memes (`[retro:YYYY]`) have crossed back through the cringe valley: the oldness is part of the joke, "
-        f"deployable when ironic meta-awareness is readable in the conversation. "
-        f"Too much if the nostalgia register doesn't land.\n\n"
-        f"Platform codes indicate origin dialect: `rd`=Reddit (upvote-brain, broad; reads naturally in most dev contexts), "
-        f"`tw`=Twitter (punchy, viral-format), `tt`=TikTok (Gen Z register, trend-chasing), "
-        f"`dc`=Discord (server-culture insular, reaction-image heavy; niche fits that feel cringe on Reddit can land here), "
-        f"`tm`=Tumblr, `yt`=YouTube.\n\n"
-        f"The **key** is the distinguishing fingerprint. When two memes feel similar, the key decides."
-    )
-    return f"{header}\n\n```\n" + "\n".join(lines) + "\n```"
-
-
-def cmd_regen():
-    """Regenerate the roster block in CLAUDE.md from memes.json."""
-    memes = load_db()
-    claude_md = Path(__file__).parent / "CLAUDE.md"
-    if not claude_md.exists():
-        print("[meme] CLAUDE.md not found", file=sys.stderr)
-        sys.exit(1)
-    existing = claude_md.read_text()
-    if _ROSTER_MARKER_BEGIN not in existing:
-        print(
-            "[meme] roster markers not found in CLAUDE.md — add <!-- BEGIN meme-roster-generated --> markers",
-            file=sys.stderr,
-        )
-        sys.exit(1)
-    new_block = f"{_ROSTER_MARKER_BEGIN}\n{_build_roster_md(memes)}\n{_ROSTER_MARKER_END}"
-    start = existing.index(_ROSTER_MARKER_BEGIN)
-    end = existing.index(_ROSTER_MARKER_END) + len(_ROSTER_MARKER_END)
-    updated = existing[:start] + new_block + existing[end:]
-    tmp = claude_md.with_suffix(".tmp")
-    tmp.write_text(updated)
-    tmp.rename(claude_md)
-    print(f"[meme] regenerated roster in CLAUDE.md ({len(memes)} memes)")
 
 
 def cmd_install():
@@ -831,10 +760,6 @@ def main():
 
     if args[0] == "--uninstall":
         cmd_uninstall()
-        return
-
-    if args[0] == "--regen":
-        cmd_regen()
         return
 
     memes = load_db()
