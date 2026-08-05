@@ -19,7 +19,13 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-from mcp.server.fastmcp import FastMCP
+# mcp 2.0 renamed FastMCP -> MCPServer and moved it from mcp.server.fastmcp to
+# mcp.server.mcpserver. The decorator and run() signatures are unchanged, so
+# this is a rename, not a port. The server was dead from the day mcp 2.0 shipped
+# until 2026-08-05 because the dependency was declared `mcp>=1.26.0` with no
+# upper bound — the breakage was the unbounded constraint, not the API change,
+# so the launcher now pins `mcp>=2,<3`. Pin the next major too.
+from mcp.server.mcpserver import MCPServer
 
 DB = Path(__file__).parent / "memes.json"
 FRAMES_DIR = Path(__file__).parent / "frames"
@@ -28,7 +34,7 @@ GIF_CACHE = Path.home() / ".cache" / "groupchat" / "memes"
 DROPS_FILE = Path.home() / ".cache" / "groupchat" / "drops.json"
 LOG_FILE = Path.home() / ".cache" / "groupchat" / "meme.log"
 
-mcp = FastMCP("meme")
+mcp = MCPServer("meme")
 
 # Linux prctl option: deliver a signal to this process when its parent dies.
 _PR_SET_PDEATHSIG = 1
