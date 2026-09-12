@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
+# /// script
+# dependencies = ["mcp>=2,<3"]
+# ///
 """
 MCP server for ambient meme drops.
 Exposes drop_meme, meme_info, and list_memes tools to Claude Code.
 
 Register with:
-    claude mcp add meme -- python3 /path/to/groupchat/meme_server.py
+    claude mcp add meme -- uv run --no-project /path/to/groupchat/meme_server.py
+
+The dependency pin lives in the PEP 723 block above, not in a launcher
+--with flag: `uv run --with X script.py` builds a fresh throwaway venv on
+every invocation (confirmed — the wheel itself is cache-hit, but the venv
+wrapper around it is not), while a script that declares its own
+dependencies gets a stable, reused environment keyed by that declaration.
+Same fix as the mcp>=2,<3 pin below: don't let the version constraint live
+somewhere the interpreter has to be told about it fresh each time.
 """
 
 import difflib

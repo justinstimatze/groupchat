@@ -665,25 +665,49 @@ def cmd_install():
     global_claude_md = Path.home() / ".claude" / "CLAUDE.md"
 
     # 1. Register MCP server with claude mcp add
+    #    uv run picks up the PEP 723 dependency block at the top of
+    #    meme_server.py — a bare `python3 <path>` here (the pre-2026-08 form)
+    #    only works if mcp happens to be importable on system python, which
+    #    it usually isn't. uv run --no-project is also what gets meme_server.py
+    #    a stable, reused environment instead of a fresh venv per launch.
     if not shutil.which("claude"):
         print("⚠️  'claude' not found in PATH — skipping MCP registration.", file=sys.stderr)
-        print(f"   Run manually: claude mcp add meme -s user -- python3 {server_path}")
+        print(f"   Run manually: claude mcp add meme -s user -- uv run --no-project {server_path}")
     else:
+        # Remove any existing registration first so a rerun always ends up on
+        # the current command — "already exists, skip" would otherwise leave
+        # a stale invocation in place forever (this is how the mcp 2.0 outage
+        # needed a hand-edit to ~/.claude.json instead of a rerun fixing it).
+        subprocess.run(
+            ["claude", "mcp", "remove", "meme", "-s", "user"],
+            capture_output=True,
+            text=True,
+        )
         result = subprocess.run(
-            ["claude", "mcp", "add", "meme", "-s", "user", "--", "python3", str(server_path)],
+            [
+                "claude",
+                "mcp",
+                "add",
+                "meme",
+                "-s",
+                "user",
+                "--",
+                "uv",
+                "run",
+                "--no-project",
+                str(server_path),
+            ],
             capture_output=True,
             text=True,
         )
         if result.returncode == 0:
-            print(f"✓ MCP server registered: python3 {server_path}")
+            print(f"✓ MCP server registered: uv run --no-project {server_path}")
         else:
-            # "already exists" is not a real error
             msg = (result.stderr or result.stdout).strip()
-            if "already" in msg.lower() or "exists" in msg.lower():
-                print("✓ MCP server already registered (skipped)")
-            else:
-                print(f"⚠️  MCP registration failed: {msg}", file=sys.stderr)
-                print(f"   Run manually: claude mcp add meme -s user -- python3 {server_path}")
+            print(f"⚠️  MCP registration failed: {msg}", file=sys.stderr)
+            print(
+                f"   Run manually: claude mcp add meme -s user -- uv run --no-project {server_path}"
+            )
 
     # 2. Append meme guidance block to ~/.claude/CLAUDE.md (idempotent)
     source_md = Path(__file__).parent / "CLAUDE.md"

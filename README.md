@@ -146,15 +146,16 @@ We report our limitations with the same precision we used to measure them, which
 ```bash
 git clone https://github.com/justinstimatze/groupchat
 cd groupchat
-pip install mcp  # or: uv pip install mcp
 ./meme --install
 ```
 
-`--install` registers the MCP server globally (`claude mcp add meme -s user`) and appends the meme guidance block to `~/.claude/CLAUDE.md` so the roster is in context for every project. Idempotent — safe to re-run after updates. Restart Claude Code to activate.
+`--install` registers the MCP server globally (`claude mcp add meme -s user -- uv run --no-project meme_server.py`) and appends the meme guidance block to `~/.claude/CLAUDE.md` so the roster is in context for every project. Idempotent — safe to re-run after updates, and always registers fresh rather than skipping if a stale registration already exists. Restart Claude Code to activate.
+
+Requires [`uv`](https://docs.astral.sh/uv/). `meme_server.py` declares its own `mcp` dependency via a PEP 723 inline script block, so `uv run` resolves it automatically — no separate `pip install` step, and no `--with` flag on the launcher to fall out of sync with the pin.
 
 **Licensing.** No meme images are committed to the repository. `memes.json` contains only metadata and pinned `img_url` sources (primarily `i.kym-cdn.com`, some `media1.tenor.com`); images are fetched at render time and cached locally. The pre-baked `.braille` files in `frames/` are low-resolution derivative works; their fair use status rests primarily on the transformative-format and non-commercial factors. We have excluded memes based on photographs with active commercial licensing management (e.g., Disaster Girl) to reduce exposure. Source images are gitignored. **Tuning.** `MEME_COOLDOWN_LAMBDA` controls drop frequency (default: 1.5). Higher = decays faster = more tolerant of back-to-back drops. Set to 99 to disable cooldown entirely during dev. `MEME_NO_BRAILLE=1` switches to plain-text alt descriptions (screen reader / no chafa).
 
-The system requires `chafa` (`apt install chafa` / `brew install chafa`) and an Anthropic API key is needed only for `meme --add`. The MCP server has no other dependencies beyond `mcp>=1.26.0`.
+The system requires `chafa` (`apt install chafa` / `brew install chafa`) and an Anthropic API key is needed only for `meme --add`. The MCP server has no other dependencies beyond `mcp>=2,<3` (pinned to the current major on purpose — the server was silently dead for a stretch when `mcp` 2.0 shipped and the old unbounded `mcp>=1.26.0` constraint quietly resolved onto it).
 
 For development, install the pre-commit hook so `ruff check`, `ruff format --check`, and the test suite run before every commit (matches CI exactly):
 
