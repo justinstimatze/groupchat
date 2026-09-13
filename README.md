@@ -149,7 +149,7 @@ cd groupchat
 ./meme --install
 ```
 
-`--install` registers the MCP server globally (`claude mcp add meme -s user -- uv run --no-project meme_server.py`) and appends the meme guidance block to `~/.claude/CLAUDE.md` so the roster is in context for every project. Idempotent — safe to re-run after updates, and always registers fresh rather than skipping if a stale registration already exists. Restart Claude Code to activate.
+`--install` resolves `meme_server.py`'s pinned `uv` environment, then registers the MCP server globally pointed directly at that interpreter (`claude mcp add meme -s user -- <resolved-python> meme_server.py`) — skipping a `uv run` wrapper process on every session — and appends the meme guidance block to `~/.claude/CLAUDE.md` so the roster is in context for every project. Idempotent — safe to re-run after updates (a `mcp` pin bump included, since the interpreter path is re-resolved each run, not hardcoded), and always registers fresh rather than skipping if a stale registration already exists. Restart Claude Code to activate.
 
 Requires [`uv`](https://docs.astral.sh/uv/). `meme_server.py` declares its own `mcp` dependency via a PEP 723 inline script block, so `uv run` resolves it automatically — no separate `pip install` step, and no `--with` flag on the launcher to fall out of sync with the pin.
 

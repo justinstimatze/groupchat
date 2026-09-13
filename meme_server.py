@@ -6,8 +6,12 @@
 MCP server for ambient meme drops.
 Exposes drop_meme, meme_info, and list_memes tools to Claude Code.
 
-Register with:
-    claude mcp add meme -- uv run --no-project /path/to/groupchat/meme_server.py
+Register with `meme --install` — it resolves this file's pinned uv
+environment once, then points Claude Code's MCP config directly at that
+interpreter, skipping a `uv run` wrapper process on every session. A plain
+`claude mcp add meme -- uv run --no-project /path/to/meme_server.py` also
+works (uv still resolves the PEP 723 block below) but leaves that wrapper
+resident per session on top of the interpreter it launches.
 
 The dependency pin lives in the PEP 723 block above, not in a launcher
 --with flag: `uv run --with X script.py` builds a fresh throwaway venv on
@@ -16,6 +20,10 @@ wrapper around it is not), while a script that declares its own
 dependencies gets a stable, reused environment keyed by that declaration.
 Same fix as the mcp>=2,<3 pin below: don't let the version constraint live
 somewhere the interpreter has to be told about it fresh each time.
+
+MEME_PRINT_PYTHON=1 prints sys.executable and exits immediately instead of
+starting the server — how `meme --install` discovers the resolved
+interpreter path without hardcoding uv's cache directory layout.
 """
 
 import difflib
@@ -454,5 +462,8 @@ def list_memes() -> str:
 
 
 if __name__ == "__main__":
+    if os.environ.get("MEME_PRINT_PYTHON"):
+        print(sys.executable)
+        sys.exit(0)
     _install_parent_death_signal()
     mcp.run()

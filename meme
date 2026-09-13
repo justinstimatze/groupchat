@@ -664,15 +664,59 @@ def cmd_install():
     server_path = (Path(__file__).parent / "meme_server.py").resolve()
     global_claude_md = Path.home() / ".claude" / "CLAUDE.md"
 
-    # 1. Register MCP server with claude mcp add
-    #    uv run picks up the PEP 723 dependency block at the top of
-    #    meme_server.py — a bare `python3 <path>` here (the pre-2026-08 form)
-    #    only works if mcp happens to be importable on system python, which
-    #    it usually isn't. uv run --no-project is also what gets meme_server.py
-    #    a stable, reused environment instead of a fresh venv per launch.
-    if not shutil.which("claude"):
+    # 1. Resolve the interpreter meme_server.py actually runs under, then
+    #    register that path directly. `uv run --no-project <path>` also works
+    #    as a registration — uv still picks up the PEP 723 dependency block —
+    #    but it leaves a wrapper process resident per session on top of the
+    #    interpreter it launches. Asking meme_server.py itself for
+    #    sys.executable (via MEME_PRINT_PYTHON=1) sidesteps hardcoding uv's
+    #    cache directory layout, and the same call forces uv to resolve the
+    #    environment if it isn't cached yet. Re-running --install re-resolves
+    #    and re-registers, so a pin bump in the PEP 723 block just needs a
+    #    rerun, not a manual path edit.
+    python_path = None
+    if not shutil.which("uv"):
+        print(
+            "⚠️  'uv' not found in PATH — cannot resolve or register the MCP server.",
+            file=sys.stderr,
+        )
+        print("   Install uv: https://docs.astral.sh/uv/")
+    else:
+        try:
+            probe = subprocess.run(
+                ["uv", "run", "--no-project", str(server_path)],
+                env={**os.environ, "MEME_PRINT_PYTHON": "1"},
+                capture_output=True,
+                text=True,
+                stdin=subprocess.DEVNULL,
+                timeout=60,
+            )
+        except subprocess.TimeoutExpired:
+            print("⚠️  Timed out resolving meme_server.py's uv environment.", file=sys.stderr)
+            probe = None
+
+        if probe is None:
+            pass
+        elif probe.returncode != 0:
+            msg = (probe.stderr or probe.stdout).strip()
+            print(f"⚠️  Failed to resolve meme_server.py's environment: {msg}", file=sys.stderr)
+        else:
+            candidate = probe.stdout.strip()
+            if candidate and os.access(candidate, os.X_OK) and Path(candidate).is_file():
+                python_path = candidate
+            else:
+                print(
+                    f"⚠️  uv reported an unusable interpreter path: {candidate!r}", file=sys.stderr
+                )
+
+    if python_path is None:
+        print(f"   Once uv is working, run: uv run --no-project {server_path}")
+        print(
+            f"   Then register manually: claude mcp add meme -s user -- <path above> {server_path}"
+        )
+    elif not shutil.which("claude"):
         print("⚠️  'claude' not found in PATH — skipping MCP registration.", file=sys.stderr)
-        print(f"   Run manually: claude mcp add meme -s user -- uv run --no-project {server_path}")
+        print(f"   Run manually: claude mcp add meme -s user -- {python_path} {server_path}")
     else:
         # Remove any existing registration first so a rerun always ends up on
         # the current command — "already exists, skip" would otherwise leave
@@ -684,30 +728,16 @@ def cmd_install():
             text=True,
         )
         result = subprocess.run(
-            [
-                "claude",
-                "mcp",
-                "add",
-                "meme",
-                "-s",
-                "user",
-                "--",
-                "uv",
-                "run",
-                "--no-project",
-                str(server_path),
-            ],
+            ["claude", "mcp", "add", "meme", "-s", "user", "--", python_path, str(server_path)],
             capture_output=True,
             text=True,
         )
         if result.returncode == 0:
-            print(f"✓ MCP server registered: uv run --no-project {server_path}")
+            print(f"✓ MCP server registered: {python_path} {server_path}")
         else:
             msg = (result.stderr or result.stdout).strip()
             print(f"⚠️  MCP registration failed: {msg}", file=sys.stderr)
-            print(
-                f"   Run manually: claude mcp add meme -s user -- uv run --no-project {server_path}"
-            )
+            print(f"   Run manually: claude mcp add meme -s user -- {python_path} {server_path}")
 
     # 2. Append meme guidance block to ~/.claude/CLAUDE.md (idempotent)
     source_md = Path(__file__).parent / "CLAUDE.md"
