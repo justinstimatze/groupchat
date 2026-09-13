@@ -1,5 +1,16 @@
 # Daemon conversion plan: one persistent meme server instead of one per session
 
+**Status: superseded, no daemon built.** This plan's RSS numbers overstated
+the real cost — six Python processes share `libpython`/`cryptography`/
+`pydantic_core`'s `.so` text pages, so RSS double-counted memory that isn't
+duplicated. A `/proc/PID/smaps_rollup` (PSS) re-measurement found the actual
+per-session server cost was ~4.5MB, not ~96MB; the `uv run` wrapper carried
+the real weight, at ~25MB private. Fixed in commit `acd4ae7` by registering
+Claude Code's MCP config against the resolved venv interpreter directly,
+skipping the wrapper — no daemon, shim, or rewrite needed. The `/dev/tty`
+analysis in §3 below is unaffected by this and still holds if a shared
+daemon ever becomes necessary for some other reason.
+
 Research-and-plan only — no code changed, nothing restarted. Written 2026-09-12
 while 5 Claude Code sessions were live on this host (5GB into swap), as the
 #1-ranked conversion target of 10 MCP servers surveyed in parallel (this server
