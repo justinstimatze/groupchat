@@ -191,6 +191,12 @@ def _render_delayed(name: str, gif_path: str) -> None:
     running chafa on the downloaded GIF.
     Screen-reader mode (MEME_NO_BRAILLE=1 or AT_SPI_BUS_ADDRESS set): writes alt_text
     as plain text instead of braille art."""
+    # /dev/tty resolves to this process's own controlling terminal — correct
+    # today only because each Claude Code session gets its own stdio-spawned
+    # server process. A single process shared across sessions would either
+    # have no controlling terminal at all (silently hitting the skip branch
+    # below for every caller) or bleed every session's render into whichever
+    # terminal happened to launch it.
     if not os.path.exists("/dev/tty"):
         _log(f"render skip [{name}]: no /dev/tty")
         return
