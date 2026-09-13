@@ -54,7 +54,7 @@ for exactly that purpose.
 Run the tools under the environment the MCP server actually launches with,
 since the repo venv does not carry `mcp`:
 
-    uv run --no-project --with 'mcp>=1.26.0' python -c "import meme_server"
+    uv run --no-project --with 'mcp>=2,<3' python -c "import meme_server"
 
 A tool-description change only reaches Claude on the next session start, because
 MCP schemas are read at server launch.
